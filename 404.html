@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#0a0814"/>
+<title>404 — Lost in space · Mejorars</title>
+<meta name="description" content="The page you're looking for has drifted out of orbit. Let's get you back home.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,800&family=Fraunces:ital,wght@1,400;1,700&family=JetBrains+Mono:wght@700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --display:'Bricolage Grotesque',sans-serif;
+  --serif:'Fraunces',Georgia,serif;
+  --mono:'JetBrains Mono',monospace;
+  --hand:'Caveat',cursive;
+  --ink:#0a0814;--paper:#f4ecd8;--magenta:#ff2e93;--violet:#5b1ff0;--acid:#caff00;
+}
+html,body{background:var(--paper);color:var(--ink);font-family:var(--display);min-height:100vh;
+  -webkit-font-smoothing:antialiased;overflow:hidden}
+.wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:2rem;text-align:center;position:relative}
+
+/* stars */
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+.stars span{position:absolute;color:var(--ink);font-size:14px;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.6;transform:scale(1.1)}}
+
+/* gradient blob */
+.wrap::before{content:'';position:absolute;top:20%;right:-15%;width:60vw;height:60vw;border-radius:50%;
+  background:radial-gradient(circle,var(--violet),transparent 70%);opacity:.25;filter:blur(50px);z-index:0}
+.wrap::after{content:'';position:absolute;bottom:10%;left:-15%;width:50vw;height:50vw;border-radius:50%;
+  background:radial-gradient(circle,var(--magenta),transparent 70%);opacity:.18;filter:blur(60px);z-index:0}
+
+.inner{position:relative;z-index:2;max-width:700px}
+.eyebrow-wrap{display:block;margin-bottom:2rem}
+.eyebrow{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+  padding:.4rem 1rem;border:2px solid var(--ink);border-radius:999px;background:var(--paper);
+  transform:rotate(-2deg)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(5rem,18vw,15rem);line-height:.85;letter-spacing:-.05em;
+  color:var(--ink);margin-bottom:1.5rem;position:relative;display:inline-block}
+h1 .four{display:inline-block}
+h1 .o{display:inline-block;color:var(--magenta);font-family:var(--serif);font-style:italic;
+  text-shadow:6px 6px 0 var(--ink),-3px -3px 0 var(--acid)}
+.tag{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3.5vw,2.5rem);line-height:1;letter-spacing:-.02em;
+  margin-bottom:1.5rem}
+.tag .it{font-family:var(--serif);font-style:italic;color:var(--magenta)}
+.sub{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.4vw,1.2rem);line-height:1.5;
+  color:var(--ink);opacity:.75;margin-bottom:2.5rem;max-width:42ch;margin-left:auto;margin-right:auto}
+.cta{display:inline-flex;align-items:center;gap:.8rem;padding:1.2rem 2.4rem;background:var(--magenta);color:var(--paper);
+  border:3px solid var(--ink);border-radius:999px;font-family:var(--display);font-weight:800;font-size:1rem;
+  text-transform:uppercase;letter-spacing:.02em;text-decoration:none;box-shadow:6px 6px 0 var(--ink);
+  transition:transform .25s,box-shadow .25s,background .25s,color .25s}
+.cta:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink);background:var(--acid);color:var(--ink)}
+.note{font-family:var(--hand);font-size:1.3rem;color:var(--magenta);margin-top:2rem;
+  transform:rotate(-1.5deg);display:block}
+</style>
+</head>
+<body>
+<div class="stars" id="stars" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="inner">
+    <div class="eyebrow-wrap"><span class="eyebrow">✦ Lost in space</span></div>
+    <h1><span class="four">4</span><span class="o">0</span><span class="four">4</span></h1>
+    <p class="tag">This page drifted <span class="it">out of orbit.</span></p>
+    <p class="sub">The page you were looking for has expanded into a different universe — or never existed at all. Let's get you back home.</p>
+    <a href="/" class="cta">Return to Mejorars →</a>
+    <div class="note">we'll get you re-routed ✦</div>
+  </div>
+</main>
+<script>
+const s = document.getElementById('stars');
+const chars = ['✦', '★', '·', '✧'];
+for (let i = 0; i < 40; i++) {
+  const el = document.createElement('span');
+  el.textContent = chars[Math.floor(Math.random() * chars.length)];
+  el.style.top = (Math.random() * 100) + '%';
+  el.style.left = (Math.random() * 100) + '%';
+  el.style.fontSize = (8 + Math.random() * 12) + 'px';
+  el.style.animationDelay = (Math.random() * 4) + 's';
+  if (Math.random() > 0.7) el.style.color = '#ff2e93';
+  else if (Math.random() > 0.5) el.style.color = '#5b1ff0';
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
