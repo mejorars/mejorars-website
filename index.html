@@ -14,7 +14,15 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-		<style>
+		<meta property="og:title" content="Mejorars — Where Brands Find Their Universe">
+    <meta property="og:description" content="AI-powered creative agency. Branding, social marketing, web design and video production.">
+    <meta property="og:image" content="https://mejorars.com/logo-preview.png">
+    <meta property="og:url" content="https://mejorars.com">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://mejorars.com/logo-preview.png">
+    <style>
       html {
         scrollbar-width: none; /* Firefox */
       }
@@ -34,7 +42,7 @@
 			--glass-border:rgba(232,51,255,.22);
 			}
       .logo{
-        height:50px;
+        height:40px;
         width:auto;
         display:block;
       }
@@ -262,7 +270,7 @@
 			color:rgba(232,51,255,.65);display:block;margin-bottom:1.2rem;font-weight:600;
 			}
 			/* ---------- finale — text is the hero, scene goes dark ---------- */
-			#finale{min-height:140vh;text-align:center;flex-direction:column}
+			#finale{min-height:100vh;text-align:center;flex-direction:column}
 			#finale .beat-tag{margin-bottom:2.4rem}
 			#finale .lead{margin:0 auto 2.8rem;max-width:48ch}
 			#finale h2{
@@ -282,7 +290,7 @@
 			.cta:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 12px 50px rgba(232,51,255,.65)}
 			footer{
 			position:relative;z-index:10;text-align:center;
-			padding:3rem 7vw 2.6rem;color:var(--dim);
+			padding:2.6rem 7vw 2.6rem;margin-bottom: 8rem;color:var(--dim);
 			font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;font-weight:500;
 			border-top:1px solid rgba(232,51,255,.14);
 			display:flex;flex-direction:column;align-items:center;gap:1.4rem;
@@ -347,7 +355,7 @@
 			.stat-row{grid-template-columns:repeat(3,1fr);gap:1rem}
 			}
 			@media(max-width:600px){
-			section{padding:10vh 6vw}
+			section{padding:10vh 6vw 0 6vw}
 			.qmark.open{left:-.4rem;top:-.8rem;font-size:3.6rem}
 			.qmark.close{right:0;font-size:3.6rem}
 			.tag-chip{display:none}
@@ -359,14 +367,20 @@
 			.rv{opacity:1!important;transform:none!important}
 			.scroll-cue::after{animation:none}
 			}
+      .loader-logo{
+        width:240px;
+        max-width:80vw;
+        height:auto;
+        margin-bottom:1rem;
+      }
 		</style>
 	</head>
 	<body>
 		<div id="loader" role="status" aria-label="Loading">
-			<div class="l-brand">Mejorars</div>
-			<div class="l-bar"><i></i></div>
-			<div class="l-tag">Preparing launch</div>
-		</div>
+      <img src="logo.png" alt="Mejorars" class="loader-logo">
+      <div class="l-bar"><i></i></div>
+      <div class="l-tag">Preparing launch</div>
+    </div>
 		<canvas id="cosmos"></canvas>
 		<div class="progress" id="progress"></div>
 		<nav>
@@ -574,7 +588,7 @@
 				<div class="beat-tag rv">Chapter 10 · The Observable Universe</div>
 				<p class="lead rv">Out here, there is nothing left to compete with. Every brand carries the potential of a galaxy — we provide the strategy, creativity, and momentum to turn that potential into brilliance.</p>
 				<h2 class="rv">Where Brands Find<br>Their Universe</h2>
-				<a class="cta rv" href="https://www.instagram.com/mejorars/" target="_blankcm">Start your project ↗</a>
+				<a class="cta rv" href="mailto:vmejorars@gmail.com">Start your project</a>
 				<br>
 				<a class="back-top rv" href="#hero">Back to launch pad ↑</a>
 			</section>
