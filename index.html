@@ -1,1031 +1,1089 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
-<meta name="theme-color" content="#0a0814"/>
-
-<!-- SEO -->
-<title>Mejorars — Beyond Ideas Into Impact</title>
-<meta name="description" content="Mejorars is a creative studio that turns scattered ideas into unmissable brands. Brand strategy, identity, web, film, and social.">
-<meta name="keywords" content="creative agency, brand strategy, brand identity, web design, film production, social media marketing, Bangalore agency, Mejorars">
-<meta name="author" content="Mejorars Creative Studio">
-<link rel="canonical" href="https://mejorars.com/"/>
-
-<!-- Open Graph (Facebook, LinkedIn) -->
-<meta property="og:type" content="website"/>
-<meta property="og:url" content="https://mejorars.com/"/>
-<meta property="og:title" content="Mejorars — Beyond Ideas Into Impact"/>
-<meta property="og:description" content="A creative studio that turns scattered ideas into unmissable brands."/>
-<meta property="og:image" content="https://mejorars.com/og-image.jpg"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
-<meta property="og:site_name" content="Mejorars"/>
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Mejorars — Beyond Ideas Into Impact"/>
-<meta name="twitter:description" content="A creative studio that turns scattered ideas into unmissable brands."/>
-<meta name="twitter:image" content="https://mejorars.com/og-image.jpg"/>
-
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-<link rel="icon" type="image/x-icon" href="favicon.ico"/>
-<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-
-<!-- Performance hints -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=JetBrains+Mono:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-
-<!-- Schema.org structured data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Mejorars",
-  "url": "https://mejorars.com",
-  "logo": "https://mejorars.com/logo.png",
-  "description": "A creative studio that turns scattered ideas into unmissable brands.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Bangalore",
-    "addressCountry": "IN"
-  },
-  "email": "hello@mejorars.com",
-  "sameAs": [
-    "https://instagram.com/mejorars",
-    "https://linkedin.com/company/mejorars"
-  ]
-}
-</script>
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --display:'Bricolage Grotesque',sans-serif;
-  --serif:'Fraunces',Georgia,serif;
-  --mono:'JetBrains Mono',monospace;
-  --hand:'Caveat',cursive;
-  --pad:clamp(1.5rem,4vw,3rem);
-  --ink:#0a0814;
-  --paper:#f4ecd8;
-  --paper-2:#ffeacc;
-  --magenta:#ff2e93;
-  --violet:#5b1ff0;
-  --plum:#2a0a5e;
-  --acid:#caff00;
-  --hot:#ff5b00;
-  --sky:#5cd3ff;
-  --rose:#ffb3d9;
-}
-html{scroll-behavior:smooth}
-html.lenis,html.lenis body{height:auto}
-.lenis.lenis-smooth{scroll-behavior:auto!important}
-.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
-.lenis.lenis-stopped{overflow:clip}
-html,body{background:var(--paper);color:var(--ink);font-family:var(--display);overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;font-weight:400;line-height:1.4}
-::selection{background:var(--acid);color:var(--ink)}
-body::-webkit-scrollbar{width:0}
-
-a,button{cursor:none}
-a:focus-visible,button:focus-visible{outline:3px solid var(--magenta);outline-offset:4px;border-radius:4px}
-
-/* CURSOR */
-.cursor{position:fixed;top:0;left:0;width:24px;height:24px;border-radius:50%;background:var(--ink);
-  pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;
-  transition:width .25s cubic-bezier(.2,.7,.2,1),height .25s cubic-bezier(.2,.7,.2,1),opacity .25s;opacity:0}
-.cursor.vis{opacity:1}
-.cursor.hover{width:60px;height:60px;background:var(--acid)}
-.cursor.click{width:40px;height:40px}
-@media(max-width:900px),(hover:none){.cursor{display:none}a,button{cursor:pointer}}
-
-/* SPACE BG — Persistent starfield + sparkles */
-.space-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.star{position:absolute;background:var(--ink);border-radius:50%;animation:twinkle 4s ease-in-out infinite}
-.star.s1{width:2px;height:2px;background:var(--ink)}
-.star.s2{width:3px;height:3px;background:var(--magenta)}
-.star.s3{width:2px;height:2px;background:var(--violet)}
-.spark{position:absolute;color:var(--ink);font-size:14px;line-height:1;animation:twinkle 5s ease-in-out infinite}
-.spark.acid{color:var(--magenta)}
-.spark.vi{color:var(--violet)}
-@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.7;transform:scale(1.1)}}
-
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem var(--pad);
-  display:flex;justify-content:space-between;align-items:center}
-.nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink);
-  padding:.5rem 0;min-height:44px}
-.nav-mark{font-family:var(--display);font-weight:800;font-size:1.4rem;letter-spacing:-.03em;line-height:1}
-.nav-mark .x{display:inline-block;width:14px;height:14px;background:var(--magenta);border-radius:50%;
-  margin:0 1px;vertical-align:middle;transform:translateY(-2px);
-  box-shadow:0 0 0 3px var(--paper),0 0 0 4px var(--ink),0 0 16px rgba(255,46,147,.45)}
-.nav-sub{font-family:var(--hand);font-size:1.3rem;color:var(--magenta);transform:rotate(-3deg) translateY(2px);margin-left:.3rem}
-.nav-links{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
-.nav-links a{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--ink);text-decoration:none;
-  padding:.5rem 1rem;border:2px solid var(--ink);background:var(--paper);text-transform:uppercase;
-  letter-spacing:.04em;transition:background .2s,color .2s,transform .2s;border-radius:999px}
-.nav-links a:hover{background:var(--ink);color:var(--paper);transform:translateY(-1px)}
-.nav-links a.cta{background:var(--magenta);color:var(--paper);border-color:var(--ink)}
-.nav-links a.cta:hover{background:var(--acid);color:var(--ink)}
-@media(max-width:760px){.nav-links a:not(.cta){display:none}}
-
-/* HERO */
-.hero{position:relative;min-height:100vh;padding:6rem var(--pad) 4rem;overflow:hidden;z-index:5}
-.hero-blob-1{position:absolute;top:25%;right:-10%;width:60vw;height:60vw;border-radius:50%;
-  background:radial-gradient(circle,var(--violet) 0%,transparent 70%);opacity:.30;pointer-events:none;
-  filter:blur(50px);z-index:0;animation:float1 18s ease-in-out infinite}
-.hero-blob-2{position:absolute;top:55%;left:-15%;width:45vw;height:45vw;border-radius:50%;
-  background:radial-gradient(circle,var(--magenta) 0%,transparent 70%);opacity:.18;pointer-events:none;
-  filter:blur(60px);z-index:0;animation:float2 22s ease-in-out infinite}
-@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,20px)}}
-@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-30px)}}
-
-.hero-grid{position:relative;z-index:5;display:grid;grid-template-columns:1fr;gap:2rem;max-width:1500px;margin:0 auto}
-
-.hero-tickers{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
-.ticker{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border:2px solid var(--ink);
-  border-radius:999px;font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.ticker.k1{background:var(--magenta);color:var(--paper)}
-.ticker.k2{background:var(--acid);color:var(--ink)}
-.ticker.k3{background:var(--paper);color:var(--ink)}
-.ticker.k4{background:var(--violet);color:var(--paper)}
-.ticker.k5{background:var(--ink);color:var(--acid);padding:.35rem .8rem}
-.ticker.k5 svg{width:18px;height:18px}
-.ticker .dot{width:6px;height:6px;border-radius:50%;background:currentColor;animation:blink 1.5s ease-in-out infinite}
-@keyframes blink{50%{opacity:.3}}
-
-.hero-title{font-family:var(--display);font-weight:800;font-size:clamp(4rem,15vw,16rem);
-  line-height:.85;letter-spacing:-.05em;color:var(--ink);margin:1rem 0;position:relative}
-.hero-title .line{display:block;position:relative}
-.hero-title .ideas{font-family:var(--serif);font-style:italic;font-weight:700;font-size:.95em;
-  color:var(--magenta);text-shadow:6px 6px 0 var(--ink),-3px -3px 0 var(--acid);position:relative;display:inline-block}
-/* Orbit ring around "ideas." */
-.hero-title .ideas::before{content:'';position:absolute;top:50%;left:50%;width:130%;height:60%;
-  border:2px dashed var(--violet);border-radius:50%;transform:translate(-50%,-50%) rotate(-12deg);
-  z-index:-1;opacity:.4;animation:orbitSpin 30s linear infinite;pointer-events:none}
-@keyframes orbitSpin{to{transform:translate(-50%,-50%) rotate(348deg)}}
-.hero-title .into{display:inline-block;background:var(--ink);color:var(--acid);padding:.05em .2em;transform:rotate(-1.2deg);
-  margin-right:.3em;border-radius:8px}
-.hero-title .impact{display:inline-block;position:relative;color:var(--ink);font-size:.95em}
-.hero-title .impact::after{content:'!!';font-family:var(--serif);font-style:italic;color:var(--magenta);margin-left:.15em;font-weight:900}
-
-.hero-stickers{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem;align-items:center}
-.sticker{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border:2px solid var(--ink);
-  border-radius:8px;font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.06em;
-  text-transform:uppercase;background:var(--paper-2);transform:rotate(-2deg);
-  box-shadow:4px 4px 0 var(--ink);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
-.sticker:nth-child(2){transform:rotate(1.5deg);background:var(--rose)}
-.sticker:nth-child(3){transform:rotate(-1deg);background:var(--sky)}
-.sticker:nth-child(4){transform:rotate(2deg);background:var(--acid)}
-.sticker:hover{transform:rotate(0) translateY(-3px);box-shadow:6px 6px 0 var(--ink)}
-.sticker .star{color:var(--magenta);font-size:1rem}
-
-.hero-foot{margin-top:4rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;align-items:end;
-  padding-top:2rem;border-top:3px solid var(--ink)}
-.hero-foot-block .lab{font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--ink);opacity:.5;margin-bottom:.5rem}
-.hero-foot-block .val{font-family:var(--serif);font-weight:400;font-size:clamp(.95rem,1.3vw,1.15rem);
-  line-height:1.35;color:var(--ink)}
-.hero-foot-block .val .it{font-style:italic;color:var(--magenta);font-weight:700}
-@media(max-width:720px){.hero-foot{grid-template-columns:1fr;gap:1.5rem}}
-
-.scroll-arrow{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
-  font-family:var(--hand);font-size:1.4rem;color:var(--magenta);display:flex;flex-direction:column;align-items:center;gap:.3rem;z-index:5}
-.scroll-arrow::after{content:'↓';font-family:var(--display);font-size:1.8rem;animation:bob 1.5s ease-in-out infinite;color:var(--ink)}
-@keyframes bob{50%{transform:translateY(8px)}}
-
-/* MANIFESTO */
-.manifesto{background:var(--ink);color:var(--paper);padding:8rem var(--pad);position:relative;overflow:hidden;z-index:5}
-.manifesto::before{content:'★';position:absolute;top:10%;right:5%;font-size:clamp(8rem,18vw,20rem);
-  color:var(--acid);opacity:.18;line-height:1;pointer-events:none;animation:spin 60s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-/* Sprinkle stars inside manifesto */
-.manifesto .mini-stars{position:absolute;inset:0;pointer-events:none;opacity:.5}
-.manifesto .mini-stars .ms{position:absolute;color:var(--paper);font-size:8px;animation:twinkle 4s ease-in-out infinite}
-
-.manifesto-inner{max-width:1300px;margin:0 auto;position:relative;z-index:2}
-.manifesto-eyebrow{font-family:var(--mono);font-size:.75rem;font-weight:700;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--acid);margin-bottom:2rem;display:inline-block;
-  padding:.4rem .9rem;border:2px solid var(--acid);border-radius:999px}
-.manifesto-quote{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,7rem);
-  line-height:.95;letter-spacing:-.035em;max-width:18ch}
-.manifesto-quote .yell{display:inline-block;background:var(--magenta);color:var(--paper);padding:0 .15em;
-  transform:rotate(-1deg);margin:0 .05em;border-radius:6px}
-.manifesto-quote .serif{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--acid)}
-.manifesto-foot{margin-top:3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
-  font-family:var(--mono);font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--paper);opacity:.6}
-
-/* SERVICES */
-.services{padding:8rem 0 0;position:relative;z-index:5;background:var(--paper)}
-.svc-header{padding:0 var(--pad);max-width:1500px;margin:0 auto 3rem;
-  display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:end}
-.svc-num-big{font-family:var(--serif);font-weight:900;font-size:clamp(5rem,12vw,11rem);line-height:.85;
-  color:var(--magenta);text-shadow:6px 6px 0 var(--ink)}
-.svc-num-big .it{font-style:italic;color:var(--violet)}
-.svc-header h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5vw,4.5rem);
-  line-height:.95;letter-spacing:-.03em;color:var(--ink)}
-.svc-header h2 .accent{font-family:var(--serif);font-style:italic;font-weight:700;color:var(--magenta)}
-@media(max-width:720px){.svc-header{grid-template-columns:1fr;gap:1rem}}
-
-.svc-list{display:grid;grid-template-columns:1fr}
-.svc-row{padding:3.5rem var(--pad);position:relative;border-top:3px solid var(--ink);
-  transition:transform .4s cubic-bezier(.2,.7,.2,1);overflow:hidden;text-decoration:none;color:inherit;display:block}
-.svc-row:last-child{border-bottom:3px solid var(--ink)}
-.svc-row:nth-child(1){background:var(--magenta);color:var(--paper)}
-.svc-row:nth-child(2){background:var(--acid);color:var(--ink)}
-.svc-row:nth-child(3){background:var(--violet);color:var(--paper)}
-.svc-row:nth-child(4){background:var(--paper-2);color:var(--ink)}
-.svc-row:nth-child(5){background:var(--sky);color:var(--ink)}
-.svc-row:hover{transform:translateX(20px)}
-.svc-row-inner{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:120px 1fr auto;gap:2rem;align-items:center;position:relative}
-.svc-row-num{font-family:var(--mono);font-size:1rem;font-weight:700;letter-spacing:.1em}
-.svc-row-title{font-family:var(--display);font-weight:800;font-size:clamp(2rem,5.5vw,5rem);line-height:.95;letter-spacing:-.03em}
-.svc-row-title .it{font-family:var(--serif);font-style:italic;font-weight:700;display:inline}
-.svc-row-arrow{font-family:var(--display);font-weight:800;font-size:clamp(2rem,4vw,3rem);line-height:1;transition:transform .4s}
-.svc-row:hover .svc-row-arrow{transform:translateX(10px) rotate(-15deg)}
-.svc-row-desc{position:absolute;top:100%;left:120px;right:0;font-family:var(--mono);font-size:.85rem;font-weight:400;
-  opacity:0;max-height:0;overflow:hidden;transition:opacity .35s,max-height .35s,margin-top .35s;line-height:1.5}
-.svc-row:hover .svc-row-desc{opacity:.85;max-height:80px;margin-top:1rem;position:relative;top:0;left:0;right:auto}
-@media(max-width:720px){.svc-row-inner{grid-template-columns:60px 1fr auto;gap:1rem}}
-
-/* STATS */
-.stats{background:var(--paper);padding:6rem var(--pad);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);position:relative;z-index:5}
-.stats-inner{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;align-items:start}
-.stat{position:relative}
-.stat-n{font-family:var(--display);font-weight:800;font-size:clamp(3.5rem,8vw,7rem);line-height:.85;
-  letter-spacing:-.03em;color:var(--ink);margin-bottom:.5rem}
-.stat-n .plus{color:var(--magenta);font-family:var(--serif);font-style:italic;font-weight:700}
-.stat-l{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);opacity:.7;max-width:18ch;line-height:1.4}
-.stat:nth-child(2) .stat-n{color:var(--violet)}
-.stat:nth-child(3) .stat-n{color:var(--magenta)}
-.stat:nth-child(4) .stat-n{color:var(--hot)}
-@media(max-width:820px){.stats-inner{grid-template-columns:1fr 1fr}}
-@media(max-width:500px){.stats-inner{grid-template-columns:1fr}}
-
-/* APPROACH */
-.approach{padding:8rem var(--pad);background:var(--paper);position:relative;overflow:hidden;z-index:5}
-.approach::before{content:'';position:absolute;top:20%;left:-15%;width:50vw;height:50vw;border-radius:50%;
-  background:radial-gradient(circle,var(--rose) 0%,transparent 70%);opacity:.5;pointer-events:none;filter:blur(40px)}
-.approach::after{content:'✦';position:absolute;top:15%;right:8%;font-size:clamp(3rem,6vw,5rem);color:var(--violet);opacity:.3;line-height:1;animation:spin 50s linear infinite}
-.approach-header{max-width:1500px;margin:0 auto 4rem;position:relative;z-index:2}
-.approach-header .lab{display:inline-block;padding:.4rem 1rem;border:2px solid var(--ink);border-radius:999px;
-  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  background:var(--paper);margin-bottom:1.5rem;transform:rotate(-2deg)}
-.approach-header h2{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,7vw,6.5rem);
-  line-height:.92;letter-spacing:-.04em;color:var(--ink)}
-.approach-header h2 .it{font-family:var(--serif);font-style:italic;font-weight:700;color:var(--magenta);
-  position:relative;display:inline-block}
-.approach-header h2 .it::after{content:'';position:absolute;bottom:.05em;left:-.05em;right:-.05em;
-  height:.15em;background:var(--acid);z-index:-1;transform:skewX(-3deg)}
-
-.approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1500px;margin:0 auto;position:relative;z-index:2}
-.ap-card{padding:2.5rem 2rem;border:3px solid var(--ink);border-radius:24px;position:relative;overflow:hidden;
-  background:var(--paper);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s;min-height:380px;display:flex;flex-direction:column}
-.ap-card:nth-child(1){background:var(--magenta);color:var(--paper);transform:rotate(-1.5deg)}
-.ap-card:nth-child(2){background:var(--paper-2);color:var(--ink);transform:rotate(.8deg)}
-.ap-card:nth-child(3){background:var(--violet);color:var(--paper);transform:rotate(-.5deg)}
-.ap-card:hover{transform:rotate(0) translateY(-10px);box-shadow:12px 12px 0 var(--ink)}
-.ap-num{font-family:var(--serif);font-weight:900;font-size:clamp(4rem,8vw,7rem);line-height:.8;font-style:italic;margin-bottom:1rem}
-.ap-card:nth-child(2) .ap-num{color:var(--magenta);text-shadow:4px 4px 0 var(--ink)}
-.ap-name{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,2.5vw,2.2rem);letter-spacing:-.02em;margin-bottom:1rem;line-height:1}
-.ap-copy{font-family:var(--serif);font-size:1.05rem;line-height:1.5;font-weight:400;margin-bottom:auto}
-.ap-badge{font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  padding:.3rem .7rem;border:2px solid currentColor;border-radius:999px;display:inline-block;margin-top:1.5rem;align-self:flex-start}
-@media(max-width:820px){.approach-grid{grid-template-columns:1fr}}
-
-.approach-flow{margin-top:3rem;max-width:1500px;margin-left:auto;margin-right:auto;
-  display:flex;justify-content:center;align-items:center;gap:1rem;flex-wrap:wrap;
-  font-family:var(--hand);font-size:clamp(1.2rem,2vw,1.8rem);color:var(--ink);font-weight:700;position:relative;z-index:2}
-.approach-flow .arr{color:var(--magenta);font-size:1.5em;line-height:1}
-
-/* EDGE */
-.edge{padding:8rem var(--pad);background:var(--ink);color:var(--paper);position:relative;overflow:hidden;z-index:5}
-.edge::before{content:'';position:absolute;bottom:-30%;right:-10%;width:70vw;height:70vw;border-radius:50%;
-  background:radial-gradient(circle,var(--violet) 0%,transparent 70%);opacity:.45;pointer-events:none;filter:blur(50px)}
-.edge::after{content:'';position:absolute;top:-20%;left:-10%;width:50vw;height:50vw;border-radius:50%;
-  background:radial-gradient(circle,var(--magenta) 0%,transparent 70%);opacity:.2;pointer-events:none;filter:blur(60px)}
-/* tiny stars in edge */
-.edge .mini-stars{position:absolute;inset:0;pointer-events:none;opacity:.4}
-.edge .mini-stars .ms{position:absolute;color:var(--paper);font-size:8px;animation:twinkle 5s ease-in-out infinite}
-.edge-inner{max-width:1500px;margin:0 auto;position:relative;z-index:2}
-.edge-header{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:5rem;align-items:end}
-.edge-header h2{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,6vw,5.5rem);
-  line-height:.92;letter-spacing:-.035em}
-.edge-header h2 .it{font-family:var(--serif);font-style:italic;color:var(--acid)}
-.edge-header h2 .box{display:inline-block;background:var(--magenta);color:var(--paper);padding:0 .12em;border-radius:6px;transform:rotate(-1deg)}
-.edge-header .intro{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.4vw,1.3rem);
-  line-height:1.5;color:var(--paper);opacity:.85;max-width:42ch}
-@media(max-width:820px){.edge-header{grid-template-columns:1fr}}
-
-.edge-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--paper);border:3px solid var(--paper)}
-.edge-cell{background:var(--ink);padding:2.5rem 1.8rem;position:relative;overflow:hidden;transition:background .35s}
-.edge-cell:hover{background:var(--plum)}
-.edge-cell .n{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.18em;color:var(--magenta);margin-bottom:1.2rem}
-.edge-cell h3{font-family:var(--display);font-weight:800;font-size:clamp(1.2rem,1.7vw,1.5rem);
-  line-height:1.05;letter-spacing:-.02em;margin-bottom:.7rem;color:var(--paper)}
-.edge-cell h3 .it{font-family:var(--serif);font-style:italic;color:var(--acid)}
-.edge-cell p{font-family:var(--display);font-size:.92rem;line-height:1.5;color:var(--paper);opacity:.7;font-weight:400}
-@media(max-width:900px){.edge-list{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.edge-list{grid-template-columns:1fr}}
-
-/* SHOUT */
-.shout{padding:10rem var(--pad);background:var(--acid);color:var(--ink);text-align:center;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);position:relative;overflow:hidden;z-index:5}
-.shout::before,.shout::after{content:'★';position:absolute;font-size:clamp(6rem,15vw,18rem);color:var(--ink);opacity:.06;line-height:1;pointer-events:none;animation:spin 80s linear infinite}
-.shout::before{top:-3%;left:-3%}
-.shout::after{bottom:-3%;right:-3%;animation-direction:reverse}
-.shout-sparkles{position:absolute;inset:0;pointer-events:none}
-.shout-sparkles .sp{position:absolute;color:var(--magenta);font-size:18px;animation:twinkle 3s ease-in-out infinite}
-.shout-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto}
-.shout p{font-family:var(--display);font-weight:800;font-size:clamp(2.5rem,8vw,7.5rem);line-height:.9;letter-spacing:-.04em}
-.shout p .it{font-family:var(--serif);font-style:italic;color:var(--magenta);position:relative;display:inline-block}
-.shout p .strike{position:relative;display:inline-block}
-.shout p .strike::after{content:'';position:absolute;left:-.05em;right:-.05em;top:50%;height:.08em;background:var(--magenta);transform:rotate(-3deg)}
-.shout-sig{font-family:var(--hand);font-size:clamp(1.2rem,2vw,1.7rem);color:var(--ink);margin-top:2rem;
-  display:inline-block;transform:rotate(-2deg)}
-
-/* CONTACT */
-.contact{padding:8rem var(--pad);background:var(--paper);position:relative;overflow:hidden;z-index:5}
-.contact::before{content:'';position:absolute;top:-20%;right:-10%;width:70vw;height:70vw;border-radius:50%;
-  background:radial-gradient(circle,var(--magenta) 0%,transparent 70%);opacity:.2;pointer-events:none;filter:blur(40px)}
-.contact::after{content:'';position:absolute;bottom:-30%;left:-15%;width:60vw;height:60vw;border-radius:50%;
-  background:radial-gradient(circle,var(--violet) 0%,transparent 70%);opacity:.15;pointer-events:none;filter:blur(60px)}
-.contact-inner{max-width:1500px;margin:0 auto;position:relative;z-index:2}
-.contact-eyebrow{display:inline-block;padding:.4rem 1rem;background:var(--ink);color:var(--paper);border-radius:999px;
-  font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  margin-bottom:2rem;transform:rotate(-1deg)}
-.contact h2{font-family:var(--display);font-weight:800;font-size:clamp(3rem,10vw,9rem);
-  line-height:.85;letter-spacing:-.045em;color:var(--ink);margin-bottom:3rem}
-.contact h2 .it{font-family:var(--serif);font-style:italic;color:var(--magenta);
-  text-shadow:5px 5px 0 var(--ink)}
-.contact h2 .box{background:var(--ink);color:var(--acid);padding:0 .12em;border-radius:8px;display:inline-block;transform:rotate(-1deg)}
-
-.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:start;margin-bottom:3rem}
-.contact-left p{font-family:var(--serif);font-style:italic;font-size:clamp(1.1rem,1.5vw,1.5rem);
-  line-height:1.45;color:var(--ink);max-width:38ch}
-.contact-right{display:flex;flex-direction:column;gap:1.5rem}
-.contact-block{padding:1.5rem;border:3px solid var(--ink);border-radius:16px;background:var(--paper);
-  transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
-.contact-block:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
-.contact-block .lab{font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--ink);opacity:.6;margin-bottom:.5rem;display:block}
-.contact-block .v{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.4rem;
-  color:var(--ink);text-decoration:none;display:inline-block;padding:.4rem 0;min-height:32px}
-.contact-block .v:hover{color:var(--magenta)}
-@media(max-width:820px){.contact-grid{grid-template-columns:1fr}}
-
-.contact-cta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;padding:2rem 0;border-top:3px solid var(--ink)}
-.cta-btn{display:inline-flex;align-items:center;gap:.8rem;padding:1.4rem 2.5rem;background:var(--magenta);
-  color:var(--paper);border:3px solid var(--ink);border-radius:999px;font-family:var(--display);font-weight:800;
-  font-size:1.1rem;letter-spacing:-.01em;text-decoration:none;text-transform:uppercase;
-  box-shadow:6px 6px 0 var(--ink);transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s,color .25s;will-change:transform}
-.cta-btn:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink);background:var(--acid);color:var(--ink)}
-.cta-btn svg{width:18px;height:18px;transition:transform .3s}
-.cta-btn:hover svg{transform:translate(4px,-4px) rotate(-15deg)}
-.cta-note{font-family:var(--hand);font-size:1.3rem;color:var(--ink);transform:rotate(-1.5deg)}
-
-.socials{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
-.socials a{font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  padding:.7rem 1.3rem;border:2px solid var(--ink);border-radius:999px;background:var(--paper);
-  color:var(--ink);text-decoration:none;transition:background .2s,color .2s,transform .2s}
-.socials a:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
-
-/* FOOTER */
-.foot{background:var(--ink);color:var(--paper);padding:4rem var(--pad) 2rem;position:relative;overflow:hidden;z-index:5}
-.foot-marquee{position:absolute;top:0;left:0;right:0;overflow:hidden;pointer-events:none}
-.foot-marquee-track{font-family:var(--display);font-weight:800;font-size:clamp(5rem,15vw,15rem);
-  line-height:.85;letter-spacing:-.04em;color:var(--paper);opacity:.08;white-space:nowrap;
-  display:flex;animation:slide 35s linear infinite}
-.foot-marquee-track span{padding-right:1rem}
-@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.foot-inner{position:relative;z-index:2;max-width:1500px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem;padding-top:6rem}
-.foot-brand{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,2.5vw,2rem);letter-spacing:-.03em;display:flex;align-items:baseline;gap:.5rem}
-.foot-brand .x{display:inline-block;width:14px;height:14px;background:var(--magenta);border-radius:50%;
-  margin:0 1px;vertical-align:middle;transform:translateY(-2px);box-shadow:0 0 12px var(--magenta)}
-.foot-meta{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--paper);opacity:.6}
-.foot-tag{font-family:var(--hand);font-size:1.3rem;color:var(--acid);transform:rotate(-2deg)}
-
-/* REVEAL */
-.rv{opacity:0;transform:translateY(40px)}
-@media(prefers-reduced-motion:reduce){
-  .rv{opacity:1;transform:none}
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-}
-
-/* LOADER */
-.loader{position:fixed;inset:0;background:var(--paper);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.4rem}
-.loader-mark{font-family:var(--display);font-weight:800;font-size:clamp(3rem,7vw,5rem);letter-spacing:-.04em;color:var(--ink);position:relative}
-.loader-mark .it{font-family:var(--serif);font-style:italic;color:var(--magenta)}
-.loader-bar{width:200px;height:6px;background:var(--ink);position:relative;overflow:hidden;border-radius:999px}
-.loader-bar::after{content:'';position:absolute;inset:0;background:var(--acid);
-  transform-origin:left;transform:scaleX(0);animation:lb 1.6s cubic-bezier(.7,0,.3,1) forwards}
-@keyframes lb{to{transform:scaleX(1)}}
-.loader-text{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
-</style>
-</head>
-<body>
-
-<div class="loader" id="loader" aria-hidden="true">
-  <div class="loader-mark">Mejo<span class="it">rars</span></div>
-  <div class="loader-bar"></div>
-  <div class="loader-text">Loud · Loading</div>
-</div>
-
-<div class="cursor" id="cursor" aria-hidden="true"></div>
-
-<!-- Persistent star sprinkle background -->
-<div class="space-bg" id="spaceBg" aria-hidden="true"></div>
-
-<nav class="nav">
-  <a class="nav-brand" href="#top" aria-label="Mejorars home">
-    <span class="nav-mark">mejo<span class="x"></span>rars</span>
-    <span class="nav-sub">studio</span>
-  </a>
-  <div class="nav-links">
-    <a href="#work">Work</a>
-    <a href="#approach">Approach</a>
-    <a href="#contact">Contact</a>
-    <a href="mailto:hello@mejorars.com" class="cta">Hire us</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero-blob-1" aria-hidden="true"></div>
-  <div class="hero-blob-2" aria-hidden="true"></div>
-
-  <div class="hero-grid">
-    <div class="hero-tickers">
-      <span class="ticker k1"><span class="dot"></span>Open for briefs · Q3</span>
-      <span class="ticker k2">Est. 2024 · Bangalore</span>
-      <span class="ticker k3">★★★★★</span>
-      <span class="ticker k4">Edition 01</span>
-      <span class="ticker k5" aria-label="Pixel planet">
-        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
-          <g fill="currentColor">
-            <rect x="6" y="3" width="4" height="1"/><rect x="4" y="4" width="8" height="1"/>
-            <rect x="3" y="5" width="10" height="3"/><rect x="4" y="8" width="8" height="1"/>
-            <rect x="6" y="9" width="4" height="1"/>
-            <rect x="0" y="6" width="3" height="1" opacity=".55"/>
-            <rect x="13" y="6" width="3" height="1" opacity=".55"/>
-          </g>
-        </svg>
-        In orbit
-      </span>
-    </div>
-
-    <h1 class="hero-title rv">
-      <span class="line">Beyond</span>
-      <span class="line"><span class="ideas">ideas.</span></span>
-      <span class="line"><span class="into">Into</span> <span class="impact">impact</span></span>
-    </h1>
-
-    <div class="hero-stickers">
-      <span class="sticker"><span class="star">✦</span>Brand strategy</span>
-      <span class="sticker"><span class="star">✦</span>Identity systems</span>
-      <span class="sticker"><span class="star">✦</span>Web · Film · Social</span>
-      <span class="sticker"><span class="star">✦</span>No decks, just decisions</span>
-    </div>
-
-    <div class="hero-foot">
-      <div class="hero-foot-block">
-        <div class="lab">What we do</div>
-        <div class="val">A studio that turns scattered ideas into <span class="it">unmissable</span> brands.</div>
-      </div>
-      <div class="hero-foot-block">
-        <div class="lab">For who</div>
-        <div class="val">Founders, marketing teams, and brave brands tired of <span class="it">looking like everyone else.</span></div>
-      </div>
-      <div class="hero-foot-block">
-        <div class="lab">How we work</div>
-        <div class="val">Embedded, fast, opinionated. <span class="it">No filler retainers.</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="scroll-arrow" aria-hidden="true">scroll</div>
-</section>
-
-<!-- MANIFESTO -->
-<section class="manifesto">
-  <div class="mini-stars" id="manifestoStars" aria-hidden="true"></div>
-  <div class="manifesto-inner">
-    <span class="manifesto-eyebrow rv">✦ Our position</span>
-    <h2 class="manifesto-quote rv">
-      Most brands shout.<br>
-      <span class="yell">We make</span> <span class="serif">things</span><br>
-      people <span class="serif">actually</span> remember.
-    </h2>
-    <div class="manifesto-foot">
-      <p class="rv">— The Mejorars studio · 2026</p>
-      <p class="rv">No. 01 / Manifesto</p>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="services" id="work">
-  <div class="svc-header">
-    <div class="svc-num-big rv">N<span class="it">o.</span>01</div>
-    <h2 class="rv">The <span class="accent">work</span><br>we ship.</h2>
-  </div>
-
-  <div class="svc-list">
-    <a class="svc-row rv" href="#contact">
-      <div class="svc-row-inner">
-        <div class="svc-row-num">/01</div>
-        <div>
-          <div class="svc-row-title">Branding <span class="it">& identity</span></div>
-          <div class="svc-row-desc">Naming, marks, voice, guidelines. Built to be unmistakable on first sight and durable on day one thousand.</div>
-        </div>
-        <div class="svc-row-arrow">→</div>
-      </div>
-    </a>
-    <a class="svc-row rv" href="#contact">
-      <div class="svc-row-inner">
-        <div class="svc-row-num">/02</div>
-        <div>
-          <div class="svc-row-title">Social <span class="it">& marketing</span></div>
-          <div class="svc-row-desc">Campaigns that earn the scroll instead of begging for it. Story-led, channel-native, performance-aware.</div>
-        </div>
-        <div class="svc-row-arrow">→</div>
-      </div>
-    </a>
-    <a class="svc-row rv" href="#contact">
-      <div class="svc-row-inner">
-        <div class="svc-row-num">/03</div>
-        <div>
-          <div class="svc-row-title">Website design <span class="it">& build</span></div>
-          <div class="svc-row-desc">Editorial sites, ecommerce, interactive — designed and shipped end to end, fast.</div>
-        </div>
-        <div class="svc-row-arrow">→</div>
-      </div>
-    </a>
-    <a class="svc-row rv" href="#contact">
-      <div class="svc-row-inner">
-        <div class="svc-row-num">/04</div>
-        <div>
-          <div class="svc-row-title">Product <span class="it">& film</span></div>
-          <div class="svc-row-desc">Stills and motion that don't look like everyone else's. Directed end to end with a point of view.</div>
-        </div>
-        <div class="svc-row-arrow">→</div>
-      </div>
-    </a>
-    <a class="svc-row rv" href="#contact">
-      <div class="svc-row-inner">
-        <div class="svc-row-num">/05</div>
-        <div>
-          <div class="svc-row-title">Campaign <span class="it">strategy</span></div>
-          <div class="svc-row-desc">The thinking before the asset. Audience, position, narrative, channel — defended in writing.</div>
-        </div>
-        <div class="svc-row-arrow">→</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="stats">
-  <div class="stats-inner">
-    <div class="stat rv">
-      <div class="stat-n" data-count="40">0<span class="plus">+</span></div>
-      <div class="stat-l">Brands launched, repositioned, or rebuilt</div>
-    </div>
-    <div class="stat rv">
-      <div class="stat-n" data-count="12">0</div>
-      <div class="stat-l">Industries across consumer, B2B, and culture</div>
-    </div>
-    <div class="stat rv">
-      <div class="stat-n" data-count="100">0<span class="plus">%</span></div>
-      <div class="stat-l">In-house. No subcontracting. No middlemen.</div>
-    </div>
-    <div class="stat rv">
-      <div class="stat-n">0</div>
-      <div class="stat-l">80-slide presentation decks. We write, then we build.</div>
-    </div>
-  </div>
-</section>
-
-<!-- APPROACH -->
-<section class="approach" id="approach">
-  <div class="approach-header">
-    <span class="lab rv">✦ Method · Chapter 02</span>
-    <h2 class="rv">Discover. Design. <span class="it">Deliver.</span></h2>
-  </div>
-
-  <div class="approach-grid">
-    <div class="ap-card rv">
-      <div class="ap-num">01</div>
-      <div class="ap-name">Discover</div>
-      <p class="ap-copy">We listen harder than the brief. Audit. Interview. Audience research. The brief is the start — not the answer.</p>
-      <span class="ap-badge">Week 1–2</span>
-    </div>
-    <div class="ap-card rv">
-      <div class="ap-num">02</div>
-      <div class="ap-name">Design</div>
-      <p class="ap-copy">We shape what only you could own. Identity, narrative, digital experience. Elegant and useful — distinct on day one.</p>
-      <span class="ap-badge">Week 3–6</span>
-    </div>
-    <div class="ap-card rv">
-      <div class="ap-num">03</div>
-      <div class="ap-name">Deliver</div>
-      <p class="ap-copy">We ship it obsessively. Production, rollout, training, governance. Until your team can run with it.</p>
-      <span class="ap-badge">Week 7+</span>
-    </div>
-  </div>
-
-  <div class="approach-flow rv">
-    <span>Signal</span><span class="arr">→</span><span>Story</span><span class="arr">→</span><span>System</span>
-  </div>
-</section>
-
-<!-- EDGE -->
-<section class="edge">
-  <div class="mini-stars" id="edgeStars" aria-hidden="true"></div>
-  <div class="edge-inner">
-    <div class="edge-header">
-      <h2 class="rv">What you <span class="box">actually</span> get<br>when you hire <span class="it">us.</span></h2>
-      <p class="intro rv">Not a list of buzzwords. Six things you can hold us to from week one.</p>
-    </div>
-    <div class="edge-list">
-      <div class="edge-cell rv">
-        <div class="n">/ 01</div>
-        <h3>Strategy that <span class="it">ships</span></h3>
-        <p>No 80-slide decks. Decisions written down, defended, then built.</p>
-      </div>
-      <div class="edge-cell rv">
-        <div class="n">/ 02</div>
-        <h3>Design with <span class="it">a thesis</span></h3>
-        <p>Every choice argues for something. Beauty plus position, not beauty alone.</p>
-      </div>
-      <div class="edge-cell rv">
-        <div class="n">/ 03</div>
-        <h3>Campaigns that <span class="it">earn it</span></h3>
-        <p>If it could run for anyone, we don't make it. Unmistakably yours, or nothing.</p>
-      </div>
-      <div class="edge-cell rv">
-        <div class="n">/ 04</div>
-        <h3>Content that <span class="it">sticks</span></h3>
-        <p>Memory, not impressions. We measure what people repeat — not what they scroll past.</p>
-      </div>
-      <div class="edge-cell rv">
-        <div class="n">/ 05</div>
-        <h3>Delivery at <span class="it">scale</span></h3>
-        <p>From single asset to multi-market rollout. Voice intact at every step.</p>
-      </div>
-      <div class="edge-cell rv">
-        <div class="n">/ 06</div>
-        <h3>Partnership, <span class="it">not vendorship</span></h3>
-        <p>Long engagements. Close enough to feel like an internal team.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SHOUT -->
-<section class="shout">
-  <div class="shout-sparkles" id="shoutSparkles" aria-hidden="true"></div>
-  <div class="shout-inner">
-    <p class="rv">We don't make <span class="strike">random</span> visuals.<br>We make <span class="it">constellations.</span></p>
-    <div class="shout-sig rv">— Mejorars principle №7</div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-inner">
-    <span class="contact-eyebrow rv">✦ The brief · Chapter 04</span>
-    <h2 class="rv">Got a <span class="it">brief?</span><br>Let's <span class="box">talk.</span></h2>
-
-    <div class="contact-grid">
-      <div class="contact-left">
-        <p class="rv">If your brand is ready for its next orbit, we're ready to draft the trajectory. Tell us what you're building — even if it's still a sentence on a napkin.</p>
-      </div>
-      <div class="contact-right">
-        <div class="contact-block rv">
-          <span class="lab">Project inquiries</span>
-          <a class="v" href="mailto:hello@mejorars.com">hello@mejorars.com</a>
-        </div>
-        <div class="contact-block rv">
-          <span class="lab">Studio</span>
-          <span class="v">Bangalore · Worldwide</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-cta">
-      <a class="cta-btn" id="ctaBtn" href="mailto:hello@mejorars.com">
-        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
-          <g fill="currentColor">
-            <rect x="7" y="1" width="2" height="2"/>
-            <rect x="6" y="3" width="4" height="2"/>
-            <rect x="5" y="5" width="6" height="4"/>
-            <rect x="6" y="9" width="4" height="2"/>
-            <rect x="4" y="6" width="1" height="2"/>
-            <rect x="11" y="6" width="1" height="2"/>
-            <rect x="6" y="11" width="1" height="2"/>
-            <rect x="9" y="11" width="1" height="2"/>
-            <rect x="5" y="13" width="1" height="1"/>
-            <rect x="10" y="13" width="1" height="1"/>
-          </g>
-        </svg>
-        Start your journey →
-      </a>
-      <span class="cta-note">reply within 24h ✦</span>
-    </div>
-
-    <div class="socials">
-      <a href="#">Instagram</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Behance</a>
-      <a href="#">X / Twitter</a>
-      <a href="#">Dribbble</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="foot">
-  <div class="foot-marquee" aria-hidden="true">
-    <div class="foot-marquee-track">
-      <span>Mejorars ★ Mejorars ✦ Mejorars ★ Mejorars ✦ </span>
-      <span>Mejorars ★ Mejorars ✦ Mejorars ★ Mejorars ✦ </span>
-    </div>
-  </div>
-  <div class="foot-inner">
-    <div class="foot-brand">mejo<span class="x"></span>rars</div>
-    <div class="foot-meta">© 2026 · Creative studio · Bangalore</div>
-    <div class="foot-tag">made loud ✦</div>
-  </div>
-</footer>
-
-<script>
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const HAS_GSAP = typeof gsap !== 'undefined';
-const HAS_ST = typeof ScrollTrigger !== 'undefined';
-const HAS_LENIS = typeof Lenis !== 'undefined';
-
-if (HAS_GSAP && HAS_ST) {
-  try { gsap.registerPlugin(ScrollTrigger); } catch (e) {}
-}
-
-/* ============================================================
-   LENIS SMOOTH SCROLL
-   ============================================================ */
-let lenis = null;
-if (!reduceMotion && HAS_LENIS) {
-  try {
-    lenis = new Lenis({
-      duration: 1.15,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-    if (HAS_ST) lenis.on('scroll', ScrollTrigger.update);
-    if (HAS_GSAP) {
-      gsap.ticker.add(time => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0);
-    }
-  } catch (e) { /* fallback to native scroll */ }
-}
-
-/* ============================================================
-   STARFIELD — Generate persistent stars in background
-   ============================================================ */
-function generateStars() {
-  const bg = document.getElementById('spaceBg');
-  if (!bg) return;
-  const count = window.innerWidth < 700 ? 30 : 60;
-  const chars = ['✦', '★', '·', '✧'];
-  for (let i = 0; i < count; i++) {
-    const isSparkle = Math.random() > 0.5;
-    const el = document.createElement(isSparkle ? 'span' : 'div');
-    if (isSparkle) {
-      el.className = 'spark ' + (Math.random() > 0.6 ? (Math.random() > 0.5 ? 'acid' : 'vi') : '');
-      el.textContent = chars[Math.floor(Math.random() * chars.length)];
-      el.style.fontSize = (8 + Math.random() * 12) + 'px';
-    } else {
-      const type = Math.ceil(Math.random() * 3);
-      el.className = 'star s' + type;
-    }
-    el.style.top = (Math.random() * 100) + '%';
-    el.style.left = (Math.random() * 100) + '%';
-    el.style.animationDelay = (Math.random() * 4) + 's';
-    el.style.animationDuration = (3 + Math.random() * 4) + 's';
-    bg.appendChild(el);
-  }
-}
-generateStars();
-
-/* Mini-stars inside specific sections */
-function fillMiniStars(elId, n, color) {
-  const host = document.getElementById(elId);
-  if (!host) return;
-  const chars = ['✦', '★', '·', '✧'];
-  for (let i = 0; i < n; i++) {
-    const ms = document.createElement('span');
-    ms.className = 'ms';
-    ms.textContent = chars[Math.floor(Math.random() * chars.length)];
-    ms.style.top = (Math.random() * 100) + '%';
-    ms.style.left = (Math.random() * 100) + '%';
-    ms.style.fontSize = (6 + Math.random() * 10) + 'px';
-    ms.style.animationDelay = (Math.random() * 4) + 's';
-    if (color) ms.style.color = color;
-    host.appendChild(ms);
-  }
-}
-fillMiniStars('manifestoStars', 25);
-fillMiniStars('edgeStars', 30);
-
-/* Shout sparkles */
-function fillShoutSparkles() {
-  const host = document.getElementById('shoutSparkles');
-  if (!host) return;
-  for (let i = 0; i < 18; i++) {
-    const sp = document.createElement('span');
-    sp.className = 'sp';
-    sp.textContent = ['✦','★','✧'][Math.floor(Math.random()*3)];
-    sp.style.top = (Math.random()*100)+'%';
-    sp.style.left = (Math.random()*100)+'%';
-    sp.style.fontSize = (12 + Math.random()*16)+'px';
-    sp.style.animationDelay = (Math.random()*3)+'s';
-    host.appendChild(sp);
-  }
-}
-fillShoutSparkles();
-
-/* ============================================================
-   CURSOR with magnetic effect on CTAs
-   ============================================================ */
-const cursor = document.getElementById('cursor');
-let mx = innerWidth/2, my = innerHeight/2, cx = mx, cy = my, cVis = false;
-addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  if (!cVis) { cursor.classList.add('vis'); cVis = true; }
-});
-addEventListener('mouseleave', () => { cursor.classList.remove('vis'); cVis = false; });
-addEventListener('mousedown', () => cursor.classList.add('click'));
-addEventListener('mouseup', () => cursor.classList.remove('click'));
-(function loop() {
-  cx += (mx - cx) * .2;
-  cy += (my - cy) * .2;
-  cursor.style.left = cx + 'px';
-  cursor.style.top = cy + 'px';
-  requestAnimationFrame(loop);
-})();
-
-document.querySelectorAll('a, button, .svc-row, .ap-card, .contact-block, .sticker, .edge-cell, .ticker').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-});
-
-/* Magnetic CTA button */
-const ctaBtn = document.getElementById('ctaBtn');
-if (ctaBtn && !reduceMotion) {
-  let bx = 0, by = 0;
-  ctaBtn.addEventListener('mousemove', e => {
-    const r = ctaBtn.getBoundingClientRect();
-    const x = e.clientX - r.left - r.width / 2;
-    const y = e.clientY - r.top - r.height / 2;
-    bx = x * 0.25; by = y * 0.25;
-    ctaBtn.style.transform = `translate(${bx}px, ${by}px)`;
-  });
-  ctaBtn.addEventListener('mouseleave', () => {
-    ctaBtn.style.transform = '';
-  });
-}
-
-/* ============================================================
-   REVEAL ANIMATIONS — staggered (GSAP), with CSS fallback
-   ============================================================ */
-if (HAS_GSAP && HAS_ST) {
-  gsap.utils.toArray('.rv').forEach((el, i) => {
-    gsap.fromTo(el,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1, y: 0, duration: .9, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' }
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Mejorars — Where Brands Find Their Universe</title>
+		<meta name="description" content="Mejorars is an AI-powered creative agency. Branding, social media marketing, web design and video production — beyond ideas into impact. 100+ clients since 2023.">
+		<meta name="theme-color" content="#07030f">
+		<meta property="og:title" content="Mejorars — Where Brands Find Their Universe">
+		<meta property="og:description" content="AI-powered creative agency. Branding, social marketing, web design and video — beyond ideas into impact. 100+ clients since 2023.">
+		<meta property="og:type" content="website">
+		<link rel="icon" type="image/png" href="favicon.png">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+		<style>
+      html {
+        scrollbar-width: none; /* Firefox */
       }
-    );
-  });
 
-  /* Hero stickers — stagger reveal */
-  gsap.from('.hero-stickers .sticker', {
-    opacity: 0, y: 30, duration: .7, stagger: .1, ease: 'back.out(1.3)', delay: .4,
-    scrollTrigger: { trigger: '.hero-stickers', start: 'top 90%', once: true }
-  });
-
-  /* Tickers — stagger reveal */
-  gsap.from('.hero-tickers .ticker', {
-    opacity: 0, y: -20, duration: .5, stagger: .08, ease: 'power2.out', delay: .2,
-    scrollTrigger: { trigger: '.hero-tickers', start: 'top 95%', once: true }
-  });
-} else {
-  /* Fallback: reveal everything via IntersectionObserver */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (en.isIntersecting) {
-        en.target.style.transition = 'opacity .8s ease, transform .8s ease';
-        en.target.style.opacity = '1';
-        en.target.style.transform = 'none';
-        io.unobserve(en.target);
+      html::-webkit-scrollbar {
+        display: none; /* Chrome, Edge, Safari */
+}
+			:root{
+			--void:#07030f;
+			--purple:#a020f0;
+			--magenta:#e833ff;
+			--nebula:#7b6cff;
+			--star:#f5f2ff;
+			--dim:rgba(245,242,255,.62);
+			--faint:rgba(245,242,255,.34);
+			--glass:rgba(255,255,255,.045);
+			--glass-border:rgba(232,51,255,.22);
+			}
+      .logo{
+        height:50px;
+        width:auto;
+        display:block;
       }
-    });
-  }, { rootMargin: '0px 0px -10% 0px' });
-  document.querySelectorAll('.rv').forEach(el => io.observe(el));
-}
-
-/* ============================================================
-   STAT COUNTERS
-   ============================================================ */
-function animateCount(el) {
-  const target = +el.dataset.count;
-  if (!target) return;
-  const suffix = el.querySelector('.plus');
-  const suffixText = suffix ? suffix.outerHTML : '';
-  if (HAS_GSAP) {
-    gsap.to({ v: 0 }, {
-      v: target, duration: 1.6, ease: 'power2.out',
-      onUpdate() { el.innerHTML = Math.round(this.targets()[0].v) + suffixText; }
-    });
-  } else {
-    /* Plain rAF counter */
-    const start = performance.now();
-    const dur = 1600;
-    function step(now) {
-      const t = Math.min(1, (now - start) / dur);
-      const v = Math.round(t * (2 - t) * target);
-      el.innerHTML = v + suffixText;
-      if (t < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-}
-if (HAS_ST) {
-  document.querySelectorAll('.stat-n[data-count]').forEach(el => {
-    ScrollTrigger.create({
-      trigger: el, start: 'top 85%', once: true,
-      onEnter: () => animateCount(el)
-    });
-  });
-} else {
-  /* IO fallback for stats */
-  const io2 = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if (en.isIntersecting) { animateCount(en.target); io2.unobserve(en.target); }
-    });
-  }, { rootMargin: '0px 0px -15% 0px' });
-  document.querySelectorAll('.stat-n[data-count]').forEach(el => io2.observe(el));
-}
-
-/* ============================================================
-   LOADER — pure CSS fade so it never gets stuck if GSAP fails
-   ============================================================ */
-function hideLoader() {
-  const l = document.getElementById('loader');
-  if (!l || l.dataset.h === '1') return;
-  l.dataset.h = '1';
-  l.style.transition = 'opacity .7s ease';
-  l.style.opacity = '0';
-  setTimeout(() => { l.style.display = 'none'; }, 750);
-}
-addEventListener('load', () => setTimeout(hideLoader, 1400));
-setTimeout(hideLoader, 2600);
-
-/* ============================================================
-   ANCHOR LINKS — use lenis if available
-   ============================================================ */
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', e => {
-    const id = link.getAttribute('href');
-    if (id === '#') return;
-    const target = document.querySelector(id);
-    if (!target) return;
-    e.preventDefault();
-    if (lenis) lenis.scrollTo(target, { duration: 1.3, offset: -20 });
-    else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-/* ============================================================
-   PARALLAX — subtle drift on hero blobs based on scroll
-   ============================================================ */
-if (!reduceMotion && HAS_GSAP && HAS_ST) {
-  gsap.to('.hero-blob-1', {
-    yPercent: 40, ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-  });
-  gsap.to('.hero-blob-2', {
-    yPercent: -25, ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-  });
-}
-</script>
-</body>
+			*{margin:0;padding:0;box-sizing:border-box}
+			body{
+			background:var(--void);
+			color:var(--star);
+			font-family:'Exo 2',sans-serif;
+			font-weight:300;
+			overflow-x:hidden;
+			letter-spacing:.01em;
+			}
+			::selection{background:var(--magenta);color:#fff}
+			#cosmos{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+			/* ---------- chrome ---------- */
+			.progress{
+			position:fixed;top:0;left:0;height:2px;width:100%;z-index:100;
+			background:linear-gradient(90deg,var(--purple),var(--magenta));
+			box-shadow:0 0 12px var(--magenta);
+			transform:scaleX(0);transform-origin:left;will-change:transform;
+			}
+			nav{
+			position:fixed;top:0;left:0;right:0;z-index:90;
+			display:flex;justify-content:space-between;align-items:center;
+			padding:1.4rem 4vw;
+			backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+			background:linear-gradient(180deg,rgba(7,3,15,.55),rgba(7,3,15,0));
+			}
+			.brand{
+			font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.05rem;
+			background:linear-gradient(110deg,var(--purple),var(--magenta) 60%,#ff9af5);
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			letter-spacing:.12em;text-decoration:none;text-transform:uppercase;
+			}
+			.tag-chip{font-family:'Orbitron',sans-serif;font-size:.55rem;letter-spacing:.34em;text-transform:uppercase;color:var(--dim);font-weight:500}
+			.tag-chip b{background:var(--purple);color:#fff;font-weight:600;padding:.3em .6em;margin-right:.45em}
+			/* ---------- DISTANCE HUD ---------- */
+			#hud{
+			position:fixed;left:1.6rem;bottom:1.6rem;z-index:95;
+			padding:.95rem 1.25rem .85rem;border-radius:14px;
+			background:rgba(14,8,28,.78);
+			border:1px solid rgba(232,51,255,.25);
+			backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+			box-shadow:0 14px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
+			min-width:215px;
+			font-family:'Orbitron',sans-serif;
+			}
+			#hud .hud-label{font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--faint);margin-bottom:.5rem;font-weight:500}
+			#hud .hud-dist{
+			font-size:1.18rem;font-weight:700;letter-spacing:.04em;color:#fff;
+			font-variant-numeric:tabular-nums;line-height:1.1;
+			text-shadow:0 0 18px rgba(232,51,255,.55);
+			white-space:nowrap;
+			}
+			#hud .hud-dist span{font-size:.62rem;font-weight:500;color:var(--magenta);letter-spacing:.18em;margin-left:.35em}
+			#hud .hud-zone{margin-top:.5rem;font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:var(--nebula);font-weight:600}
+			#hud .hud-bar{margin-top:.6rem;height:2px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+			#hud .hud-bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--purple),var(--magenta));border-radius:99px;transform:scaleX(0);transform-origin:left;will-change:transform}
+			/* ---------- layout ---------- */
+			main{position:relative;z-index:10}
+			section{min-height:110vh;display:flex;align-items:center;justify-content:center;padding:12vh 7vw;position:relative}
+			.inner{width:100%;max-width:1150px}
+			/* story beats */
+			section.beat{min-height:95vh;text-align:center}
+			.beat-line{font-size:clamp(1.5rem,3.4vw,2.7rem);line-height:1.5;font-weight:200;max-width:26ch;margin:0 auto}
+			.beat-line strong{
+			font-weight:500;
+			background:linear-gradient(110deg,#fff,var(--magenta));
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			}
+			.beat-tag{
+			font-family:'Orbitron',sans-serif;font-size:.55rem;letter-spacing:.5em;text-transform:uppercase;
+			color:var(--faint);margin-bottom:2rem;font-weight:600;
+			}
+			.eyebrow{
+			font-family:'Orbitron',sans-serif;
+			font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;
+			color:var(--magenta);margin-bottom:1.5rem;display:flex;align-items:center;gap:.9rem;font-weight:600;
+			}
+			.eyebrow::before{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--purple),var(--magenta))}
+			.eyebrow.center{justify-content:center}
+			.eyebrow.center::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--magenta),var(--purple))}
+			h1,h2{font-family:'Orbitron',sans-serif;font-weight:700;line-height:1.14;letter-spacing:.03em;text-transform:uppercase}
+			h1{font-size:clamp(2.4rem,7vw,5.6rem);font-weight:900}
+			h2{font-size:clamp(1.5rem,3.4vw,2.7rem);margin-bottom:1.4rem}
+			h2 .hl{
+			background:linear-gradient(110deg,#fff 10%,var(--magenta));
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			}
+			p.lead{font-size:clamp(1rem,1.3vw,1.16rem);color:var(--dim);line-height:1.9;max-width:54ch}
+			/* ---------- glass (performance build: layered translucency, no live blur —
+			live backdrop-filter over an animating WebGL canvas is the #1 scroll-lag cause) ---------- */
+			.glass{
+			background:linear-gradient(160deg, rgba(22,13,44,.82), rgba(11,6,24,.72));
+			border:1px solid var(--glass-border);
+			border-radius:22px;
+			box-shadow:0 24px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);
+			position:relative;overflow:hidden;
+			}
+			.glass::before{
+			content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+			background:radial-gradient(600px 220px at 12% -10%,rgba(232,51,255,.14),transparent 60%);
+			}
+			/* ---------- hero ---------- */
+			#hero{min-height:105vh;text-align:center;flex-direction:column}
+			#hero .kicker{
+			font-family:'Orbitron',sans-serif;font-size:.6rem;font-weight:600;
+			letter-spacing:.55em;text-transform:uppercase;color:var(--magenta);margin-bottom:2.2rem;
+			}
+			#hero h1{
+			background:linear-gradient(120deg,#fff 20%,#e6b8ff 50%,var(--magenta));
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			filter:drop-shadow(0 0 36px rgba(160,32,240,.45));
+			}
+			#hero .sub{
+			margin-top:1.8rem;font-family:'Orbitron',sans-serif;font-weight:500;
+			font-size:clamp(.66rem,1.4vw,.92rem);letter-spacing:.58em;text-transform:uppercase;color:var(--dim);
+			}
+			#hero .hook{
+			margin:2.6rem auto 0;font-size:clamp(1rem,1.5vw,1.2rem);color:var(--dim);font-weight:200;max-width:44ch;line-height:1.9;
+			}
+			#hero .hook strong{color:#fff;font-weight:400}
+			.scroll-cue{
+			position:absolute;bottom:5vh;left:50%;transform:translateX(-50%);
+			font-family:'Orbitron',sans-serif;font-size:.52rem;letter-spacing:.42em;text-transform:uppercase;color:var(--faint);
+			display:flex;flex-direction:column;align-items:center;gap:.8rem;font-weight:500;
+			}
+			.scroll-cue::after{content:"";width:1px;height:50px;background:linear-gradient(180deg,var(--magenta),transparent);animation:fall 1.8s ease-in-out infinite}
+			@keyframes fall{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+			/* ---------- quotes ---------- */
+			.quote-sec{min-height:100vh}
+			.quote-wrap{max-width:900px;position:relative;padding:2rem 0;margin:0 auto}
+			.quote-wrap .qmark{
+			font-family:'Orbitron',sans-serif;font-size:5.4rem;line-height:0;font-weight:900;
+			position:absolute;color:rgba(232,51,255,.16);user-select:none;
+			}
+			.qmark.open{top:1rem;left:-3rem}
+			.qmark.close{bottom:-1.2rem;right:-1rem}
+			.quote-wrap p{font-size:clamp(1.4rem,3vw,2.5rem);line-height:1.5;font-weight:200}
+			.quote-wrap p strong{
+			font-weight:500;
+			background:linear-gradient(110deg,#fff,var(--magenta));
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			}
+			.quote-wrap .q-id{
+			margin-top:2rem;font-family:'Orbitron',sans-serif;font-size:.52rem;
+			letter-spacing:.4em;text-transform:uppercase;color:var(--faint);font-weight:500;
+			}
+			/* ---------- splits & panels ---------- */
+			.split{display:grid;grid-template-columns:1.05fr .95fr;gap:4rem;align-items:center;width:100%;max-width:1150px}
+			.panel{padding:2.8rem clamp(1.6rem,3vw,3rem)}
+			.accent-bar{
+			height:5px;width:100%;border-radius:99px;margin-bottom:2rem;
+			background:linear-gradient(90deg,var(--purple),var(--magenta),#ff9af5);
+			box-shadow:0 0 18px rgba(232,51,255,.5);
+			}
+			.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:2.2rem}
+			.stat b{
+			font-family:'Orbitron',sans-serif;font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:800;display:block;margin-bottom:.4rem;
+			background:linear-gradient(110deg,#fff,var(--magenta));
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			}
+			.stat span{font-family:'Orbitron',sans-serif;font-size:.52rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);font-weight:500;line-height:1.6;display:block}
+			/* centered single-panel sections */
+			.center-panel{max-width:760px;width:100%;margin:0 auto}
+			/* ---------- SERVICES ---------- */
+			#services{flex-direction:column;padding-bottom:8vh}
+			#services header{text-align:center;margin-bottom:4rem;max-width:760px}
+			#services header p.lead{margin:0 auto}
+			.svc-stack{display:flex;flex-direction:column;gap:1.6rem;width:100%;max-width:1150px}
+			.svc{
+			display:grid;grid-template-columns:auto 1fr;gap:clamp(1.6rem,4vw,3.6rem);align-items:center;
+			padding:clamp(2rem,4vw,3rem) clamp(1.8rem,4vw,3.4rem);border-radius:24px;
+			transition:transform .55s cubic-bezier(.2,.8,.2,1),border-color .55s,box-shadow .55s;
+			}
+			.svc:hover{
+			transform:translateX(14px);
+			border-color:rgba(232,51,255,.55);
+			box-shadow:0 30px 70px rgba(160,32,240,.25);
+			}
+			.svc .big-num{
+			font-family:'Orbitron',sans-serif;font-weight:900;
+			font-size:clamp(2.6rem,6vw,4.6rem);line-height:1;
+			background:linear-gradient(180deg,rgba(232,51,255,.85),rgba(160,32,240,.25));
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			min-width:1.6em;
+			}
+			.svc .impact{font-size:clamp(1.15rem,2.1vw,1.7rem);font-weight:200;line-height:1.45;margin-bottom:.9rem}
+			.svc .impact strong{
+			font-weight:500;
+			background:linear-gradient(110deg,#fff,var(--magenta));
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			}
+			.svc h3{
+			font-family:'Orbitron',sans-serif;font-weight:600;font-size:.72rem;
+			letter-spacing:.3em;text-transform:uppercase;color:var(--magenta);margin-bottom:1rem;
+			}
+			.svc p.desc{font-size:.95rem;color:var(--dim);line-height:1.85;max-width:60ch}
+			/* ---------- strengths ---------- */
+			.str-list{display:flex;flex-direction:column;gap:1rem;width:100%;max-width:680px}
+			.str{
+			display:flex;align-items:baseline;gap:1.6rem;
+			padding:1.3rem 1.7rem;border-radius:16px;
+			transition:transform .45s ease,border-color .45s;
+			}
+			.str:hover{transform:translateX(10px);border-color:rgba(232,51,255,.5)}
+			.str .s-num{
+			font-family:'Orbitron',sans-serif;font-size:.8rem;font-weight:800;flex:0 0 auto;
+			background:linear-gradient(110deg,var(--purple),var(--magenta));
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			}
+			.str span:last-child{font-size:1.02rem;color:rgba(245,242,255,.85)}
+			/* ---------- approach ---------- */
+			.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.8rem;width:100%}
+			.step{padding:2.4rem 1.9rem;border-radius:18px}
+			.step b{
+			font-family:'Orbitron',sans-serif;font-weight:700;font-size:1rem;display:block;margin-bottom:.9rem;
+			letter-spacing:.12em;text-transform:uppercase;
+			background:linear-gradient(110deg,#fff,var(--magenta));
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			}
+			.step p{font-size:.9rem;color:var(--dim);line-height:1.8}
+			.step .orbit-num{
+			font-family:'Orbitron',sans-serif;font-size:.52rem;letter-spacing:.32em;
+			color:rgba(232,51,255,.65);display:block;margin-bottom:1.2rem;font-weight:600;
+			}
+			/* ---------- finale — text is the hero, scene goes dark ---------- */
+			#finale{min-height:140vh;text-align:center;flex-direction:column}
+			#finale .beat-tag{margin-bottom:2.4rem}
+			#finale .lead{margin:0 auto 2.8rem;max-width:48ch}
+			#finale h2{
+			font-size:clamp(2rem,5.4vw,4.4rem);font-weight:900;line-height:1.16;margin-bottom:0;
+			color:#fff;
+			text-shadow:0 0 50px rgba(232,51,255,.5), 0 0 110px rgba(160,32,240,.35);
+			}
+			.cta{
+			display:inline-flex;align-items:center;gap:.9rem;margin-top:3.6rem;
+			font-family:'Orbitron',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;
+			color:#fff;text-decoration:none;
+			padding:1.25rem 2.6rem;border-radius:99px;
+			background:linear-gradient(110deg,var(--purple),var(--magenta));
+			box-shadow:0 0 34px rgba(232,51,255,.45), inset 0 1px 0 rgba(255,255,255,.3);
+			transition:transform .4s ease,box-shadow .4s ease;
+			}
+			.cta:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 12px 50px rgba(232,51,255,.65)}
+			footer{
+			position:relative;z-index:10;text-align:center;
+			padding:3rem 7vw 2.6rem;color:var(--dim);
+			font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;font-weight:500;
+			border-top:1px solid rgba(232,51,255,.14);
+			display:flex;flex-direction:column;align-items:center;gap:1.4rem;
+			}
+			.ig-link{
+			display:inline-flex;align-items:center;gap:.6rem;
+			color:var(--star);text-decoration:none;
+			font-family:'Orbitron',sans-serif;font-size:.62rem;letter-spacing:.26em;font-weight:600;
+			padding:.75em 1.6em;border:1px solid rgba(232,51,255,.35);border-radius:99px;
+			transition:border-color .4s,color .4s,box-shadow .4s,transform .4s;
+			}
+			.ig-link:hover{
+			color:#fff;border-color:var(--magenta);
+			box-shadow:0 0 24px rgba(232,51,255,.35);
+			transform:translateY(-2px);
+			}
+			.ig-link svg{color:var(--magenta)}
+			.rv{opacity:0;transform:translateY(60px);will-change:opacity,transform}
+			/* ---------- loader ---------- */
+			#loader{
+			position:fixed;inset:0;z-index:200;background:var(--void);
+			display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;
+			transition:opacity .8s ease;
+			}
+			#loader.done{opacity:0;pointer-events:none}
+			#loader .l-brand{
+			font-family:'Orbitron',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:.14em;text-transform:uppercase;
+			background:linear-gradient(110deg,var(--purple),var(--magenta) 60%,#ff9af5);
+			-webkit-background-clip:text;background-clip:text;color:transparent;
+			}
+			#loader .l-bar{width:130px;height:2px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+			#loader .l-bar i{display:block;height:100%;width:40%;border-radius:99px;
+			background:linear-gradient(90deg,var(--purple),var(--magenta));
+			animation:load 1.1s ease-in-out infinite alternate}
+			@keyframes load{from{transform:translateX(-100%)}to{transform:translateX(330%)}}
+			#loader .l-tag{font-family:'Orbitron',sans-serif;font-size:.5rem;letter-spacing:.45em;text-transform:uppercase;color:var(--faint)}
+			/* ---------- accessibility ---------- */
+			a:focus-visible,button:focus-visible{
+			outline:2px solid var(--magenta);outline-offset:4px;border-radius:6px;
+			}
+			.back-top{
+			display:inline-block;margin-top:2.2rem;color:var(--faint);text-decoration:none;
+			font-family:'Orbitron',sans-serif;font-size:.54rem;letter-spacing:.34em;text-transform:uppercase;font-weight:500;
+			transition:color .4s;
+			}
+			.back-top:hover{color:var(--magenta)}
+			/* mobile browser bars: stable viewport units where supported */
+			@supports (min-height:100svh){
+			#hero{min-height:100svh}
+			section.beat{min-height:90svh}
+			}
+			/* lighter effects on small screens = smoother scrolling */
+			@media(max-width:768px){
+			nav{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+			#hud{backdrop-filter:none;-webkit-backdrop-filter:none}
+			}
+			@media(max-width:1024px){
+			.split{grid-template-columns:1fr;gap:2.4rem}
+			.steps{grid-template-columns:1fr}
+			.svc{grid-template-columns:1fr;gap:1.2rem}
+			.svc .big-num{min-width:0}
+			.stat-row{grid-template-columns:repeat(3,1fr);gap:1rem}
+			}
+			@media(max-width:600px){
+			section{padding:10vh 6vw}
+			.qmark.open{left:-.4rem;top:-.8rem;font-size:3.6rem}
+			.qmark.close{right:0;font-size:3.6rem}
+			.tag-chip{display:none}
+			.stat-row{grid-template-columns:1fr;gap:1.2rem}
+			#hud{left:50%;transform:translateX(-50%);bottom:1rem;min-width:0;padding:.7rem 1rem .6rem}
+			#hud .hud-dist{font-size:.95rem}
+			}
+			@media(prefers-reduced-motion:reduce){
+			.rv{opacity:1!important;transform:none!important}
+			.scroll-cue::after{animation:none}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="loader" role="status" aria-label="Loading">
+			<div class="l-brand">Mejorars</div>
+			<div class="l-bar"><i></i></div>
+			<div class="l-tag">Preparing launch</div>
+		</div>
+		<canvas id="cosmos"></canvas>
+		<div class="progress" id="progress"></div>
+		<nav>
+			<a class="brand" href="#hero">
+			<img src="logo.png" alt="Mejorars Logo" class="logo">
+			</a>
+			<div class="tag-chip"><b>AI-POWERED</b>CREATIVE AGENCY</div>
+		</nav>
+		<!-- DISTANCE HUD -->
+		<div id="hud">
+			<div class="hud-label">Distance Travelled</div>
+			<div class="hud-dist"><span id="hud-num">0.00</span><span id="hud-unit">KM</span></div>
+			<div class="hud-zone" id="hud-zone">LAUNCH PAD</div>
+			<div class="hud-bar"><i id="hud-bar"></i></div>
+		</div>
+		<main>
+			<!-- CH 01 · THE SPARK -->
+			<section id="hero">
+				<div class="kicker rv">AI-Powered Creative Agency</div>
+				<h1 class="rv">MEJORARS</h1>
+				<div class="sub rv">Beyond Ideas Into Impact</div>
+				<p class="hook rv">Every great brand is a <strong>universe waiting to be discovered.</strong><br>This is the journey to yours.</p>
+				<div class="scroll-cue">Scroll to begin</div>
+			</section>
+			<!-- BEAT · THE SPARK -->
+			<section class="beat">
+				<div>
+					<div class="beat-tag rv">Chapter 01 · The Spark</div>
+					<p class="beat-line rv">Every brand begins as a <strong>single point of light.</strong> Most stay unseen. Some become impossible to ignore.</p>
+				</div>
+			</section>
+			<!-- QUOTE 1 -->
+			<section class="quote-sec">
+				<div class="quote-wrap rv">
+					<span class="qmark open">“</span>
+					<p><strong>Ideas travel faster</strong> when powered by design that inspires.</p>
+					<span class="qmark close">”</span>
+					<div class="q-id">TRANSMISSION 01 / MEJORARS</div>
+				</div>
+			</section>
+			<!-- CH 02 · THE CREW -->
+			<section id="about">
+				<div class="split">
+					<div class="rv">
+						<div class="eyebrow">Chapter 02 · The Crew</div>
+						<h2>We turn sparks into <span class="hl">constellations.</span></h2>
+						<p class="lead">Mejorars is an AI-powered creative agency where creativity meets clarity and strategy meets scale. We build the ecosystems that let brands grow, connect, and command attention.</p>
+					</div>
+					<div class="glass panel rv">
+						<div class="accent-bar"></div>
+						<p class="lead" style="max-width:none">Driven by imagination. Refined by insight. Anchored in precision.</p>
+						<div class="stat-row">
+							<div class="stat"><b>100+</b><span>Clients<br>Served</span></div>
+							<div class="stat"><b>2023</b><span>Year<br>Born</span></div>
+							<div class="stat"><b>AI</b><span>Powered<br>Core</span></div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- CH 03 · THE DESTINATION -->
+			<section id="vision">
+				<div class="split">
+					<div class="glass panel rv">
+						<div class="accent-bar"></div>
+						<p class="lead" style="max-width:none">Timeless. Memorable. Alive on every platform, for every generation.</p>
+					</div>
+					<div class="rv">
+						<div class="eyebrow">Chapter 03 · The Destination</div>
+						<h2>Brands that rise <span class="hl">beyond the ordinary.</span></h2>
+						<p class="lead">Every identity we create is built to command presence, spark emotion, and earn admiration that lasts.</p>
+					</div>
+				</div>
+			</section>
+			<!-- BEAT · THE NOISE -->
+			<section class="beat">
+				<div>
+					<div class="beat-tag rv">Chapter 04 · The Field of Noise</div>
+					<p class="beat-line rv">Ahead: an asteroid field of <strong>a thousand brands</strong> fighting for the same attention. This is where most journeys end.</p>
+				</div>
+			</section>
+			<!-- QUOTE 2 -->
+			<section class="quote-sec">
+				<div class="quote-wrap rv">
+					<span class="qmark open">“</span>
+					<p><strong>We design clarity</strong> in a world that competes for attention.</p>
+					<span class="qmark close">”</span>
+					<div class="q-id">TRANSMISSION 02 / MEJORARS</div>
+				</div>
+			</section>
+			<!-- CH 05 · THE INSTRUMENTS -->
+			<section id="services">
+				<header class="rv">
+					<div class="eyebrow center">Chapter 05 · The Instruments</div>
+					<h2>Four engines. One mission:<br><span class="hl">your gravity.</span></h2>
+					<p class="lead">Four capabilities engineered to pull attention toward your brand — and keep it in orbit.</p>
+				</header>
+				<div class="svc-stack">
+					<div class="glass svc rv">
+						<div class="big-num">01</div>
+						<div>
+							<h3>Branding &amp; Identity</h3>
+							<div class="impact">Before anyone hears you, <strong>they see you.</strong></div>
+							<p class="desc">Visual and verbal identities that define presence, inspire recognition, and build trust.</p>
+						</div>
+					</div>
+					<div class="glass svc rv">
+						<div class="big-num">02</div>
+						<div>
+							<h3>Social Media Optimization &amp; Marketing</h3>
+							<div class="impact">Where attention lives, <strong>influence grows.</strong></div>
+							<p class="desc">Strategies that grow communities, build influence, and expand reach across every platform.</p>
+						</div>
+					</div>
+					<div class="glass svc rv">
+						<div class="big-num">03</div>
+						<div>
+							<h3>Website Design &amp; Development</h3>
+							<div class="impact">Every universe needs <strong>a center.</strong></div>
+							<p class="desc">Seamless, immersive websites that act as the digital core of your brand.</p>
+						</div>
+					</div>
+					<div class="glass svc rv">
+						<div class="big-num">04</div>
+						<div>
+							<h3>Product &amp; Video Shoots</h3>
+							<div class="impact">Stories that move at <strong>the speed of light.</strong></div>
+							<p class="desc">Motion and stills that bring products to life and turn vision into experience.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- CH 06 · THE ENGINE ROOM -->
+			<section id="strengths">
+				<div class="split">
+					<div class="rv">
+						<div class="eyebrow">Chapter 06 · The Engine Room</div>
+						<h2>What keeps the mission <span class="hl">on course.</span></h2>
+						<p class="lead">Beautiful work that doesn't perform is decoration. Everything we build moves a number that matters to you.</p>
+					</div>
+					<div class="str-list">
+						<div class="glass str rv"><span class="s-num">01</span><span>Creative strategies aligned with measurable outcomes</span></div>
+						<div class="glass str rv"><span class="s-num">02</span><span>Designs that combine elegance with relevance</span></div>
+						<div class="glass str rv"><span class="s-num">03</span><span>Campaigns tailored to maximize engagement</span></div>
+						<div class="glass str rv"><span class="s-num">04</span><span>Content crafted to spark emotion and loyalty</span></div>
+						<div class="glass str rv"><span class="s-num">05</span><span>Delivery that ensures consistency and scale</span></div>
+					</div>
+				</div>
+			</section>
+			<!-- CH 07 · THE FLIGHT PLAN -->
+			<section id="approach">
+				<div class="inner">
+					<div class="rv">
+						<div class="eyebrow">Chapter 07 · The Flight Plan</div>
+						<h2>Discover. Design. <span class="hl">Deliver.</span></h2>
+						<p class="lead">Three stages. No guesswork.</p>
+					</div>
+					<div class="steps">
+						<div class="glass step rv">
+							<span class="orbit-num">STAGE 01 — IGNITION</span>
+							<b>Discover</b>
+							<p>We start by understanding your aspirations, your audience, and your challenges.</p>
+						</div>
+						<div class="glass step rv">
+							<span class="orbit-num">STAGE 02 — TRAJECTORY</span>
+							<b>Design</b>
+							<p>We shape solutions that reflect your brand's character — nothing off the shelf.</p>
+						</div>
+						<div class="glass step rv">
+							<span class="orbit-num">STAGE 03 — ORBIT</span>
+							<b>Deliver</b>
+							<p>We execute with precision, for impact that lasts long after launch.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- CH 08 · THE NAVIGATORS -->
+			<section id="edge">
+				<div class="glass panel center-panel rv">
+					<div class="accent-bar"></div>
+					<div class="eyebrow">Chapter 08 · The Navigators</div>
+					<h2 style="font-size:clamp(1.3rem,2.6vw,2.1rem)">We see constellations where others see <span class="hl">noise.</span></h2>
+					<p class="lead" style="max-width:none">We look past campaigns and visuals to find the patterns others miss — the way astronomers find constellations in scattered stars. That perspective guides brands to growth, clarity, and distinction.</p>
+				</div>
+			</section>
+			<!-- CH 09 · FELLOW TRAVELLERS -->
+			<section id="clients">
+				<div class="glass panel center-panel rv">
+					<div class="accent-bar"></div>
+					<div class="eyebrow">Chapter 09 · Fellow Travellers</div>
+					<h2>100+ brands. One <span class="hl">shared pursuit.</span></h2>
+					<p class="lead" style="max-width:none">Since 2023, more than a hundred brands have trusted Mejorars to elevate their presence. Each collaboration is a shared pursuit of excellence and influence.</p>
+				</div>
+			</section>
+			<!-- QUOTE 3 -->
+			<section class="quote-sec">
+				<div class="quote-wrap rv">
+					<span class="qmark open">“</span>
+					<p><strong>Innovation is not a choice,</strong> it is the identity we shape for you.</p>
+					<span class="qmark close">”</span>
+					<div class="q-id">TRANSMISSION 03 / MEJORARS</div>
+				</div>
+			</section>
+			<!-- CH 10 · THE OBSERVABLE UNIVERSE -->
+			<section id="finale">
+				<div class="beat-tag rv">Chapter 10 · The Observable Universe</div>
+				<p class="lead rv">Out here, there is nothing left to compete with. Every brand carries the potential of a galaxy — we provide the strategy, creativity, and momentum to turn that potential into brilliance.</p>
+				<h2 class="rv">Where Brands Find<br>Their Universe</h2>
+				<a class="cta rv" href="https://www.instagram.com/mejorars/" target="_blankcm">Start your project ↗</a>
+				<br>
+				<a class="back-top rv" href="#hero">Back to launch pad ↑</a>
+			</section>
+		</main>
+		<footer>
+			<div>Mejorars · AI-Powered Creative Agency · Est. 2023 · 100+ Clients</div>
+			<a class="ig-link" href="https://www.instagram.com/mejorars/" target="_blank" rel="noopener noreferrer" aria-label="Mejorars on Instagram">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<rect x="2" y="2" width="20" height="20" rx="5"/>
+					<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+					<line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+				</svg>
+				@mejorars
+			</a>
+		</footer>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.14/lenis.min.js"></script>
+		<script>
+			gsap.registerPlugin(ScrollTrigger);
+			const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+			
+			/* ============================================================
+			   THREE.JS COSMOS
+			============================================================ */
+			const canvas = document.getElementById('cosmos');
+			/* adapt quality to the device — smoothness over spectacle */
+			const LOW = innerWidth < 768 || (navigator.hardwareConcurrency || 8) <= 4;
+			const renderer = new THREE.WebGLRenderer({canvas, antialias:!LOW, powerPreference:'high-performance'});
+			renderer.setPixelRatio(Math.min(devicePixelRatio, LOW ? 1.25 : 1.75));
+			renderer.setSize(innerWidth, innerHeight);
+			
+			const scene = new THREE.Scene();
+			scene.background = new THREE.Color(0x07030f);
+			scene.fog = new THREE.FogExp2(0x07030f, 0.0078);
+			const camera = new THREE.PerspectiveCamera(58, innerWidth/innerHeight, 0.1, 700);
+			camera.position.set(0, 0, 26);
+			
+			scene.add(new THREE.AmbientLight(0x3a2a6a, 0.85));
+			const keyLight = new THREE.PointLight(0xe833ff, 1.6, 240);
+			keyLight.position.set(28, 18, 30); scene.add(keyLight);
+			const fillLight = new THREE.PointLight(0x7b6cff, 1.1, 220);
+			fillLight.position.set(-30, -12, 12); scene.add(fillLight);
+			const sun = new THREE.DirectionalLight(0xffffff, 0.55);
+			sun.position.set(-10, 20, 18); scene.add(sun);
+			const galLight = new THREE.PointLight(0xb38cff, 1.3, 180);
+			galLight.position.set(0, 4, -240); scene.add(galLight);
+			
+			function glowTexture(inner, outer){
+			  const c = document.createElement('canvas'); c.width = c.height = 256;
+			  const ctx = c.getContext('2d');
+			  const g = ctx.createRadialGradient(128,128,0,128,128,128);
+			  g.addColorStop(0, inner); g.addColorStop(1, outer);
+			  ctx.fillStyle = g; ctx.fillRect(0,0,256,256);
+			  return new THREE.CanvasTexture(c);
+			}
+			
+			function makeStars(count, spread, size, color, zc){
+			  const geo = new THREE.BufferGeometry();
+			  const pos = new Float32Array(count*3);
+			  for(let i=0;i<count;i++){
+			    pos[i*3]   = (Math.random()-0.5)*spread;
+			    pos[i*3+1] = (Math.random()-0.5)*spread*0.7;
+			    pos[i*3+2] = zc + (Math.random()-0.5)*spread;
+			  }
+			  geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+			  const pts = new THREE.Points(geo, new THREE.PointsMaterial({
+			    size, color, transparent:true, opacity:0.9,
+			    map:glowTexture('rgba(255,255,255,1)','rgba(255,255,255,0)'),
+			    depthWrite:false, blending:THREE.AdditiveBlending
+			  }));
+			  scene.add(pts);
+			  return pts;
+			}
+			const starsFar  = makeStars(LOW?1800:3200, 420, 0.55, 0xffffff, -90);
+			const starsMid  = makeStars(LOW?1000:1700, 320, 0.9,  0xc9b8ff, -100);
+			const starsNear = makeStars(LOW?400:700,   240, 1.5,  0xe833ff, -110);
+			
+			/* tiny distant stars for the observable-universe finale —
+			   small, white, sparse; the only thing left at the end */
+			const deepStars = makeStars(LOW?1000:1600, 260, 0.42, 0xffffff, -320);
+			deepStars.material.opacity = 0.75;
+			
+			const nebulae = new THREE.Group();
+			const nebColors = [
+			  ['rgba(160,32,240,.55)','rgba(160,32,240,0)'],
+			  ['rgba(232,51,255,.4)','rgba(232,51,255,0)'],
+			  ['rgba(123,108,255,.45)','rgba(123,108,255,0)'],
+			  ['rgba(255,120,90,.26)','rgba(255,120,90,0)']
+			];
+			for(let i=0;i<(LOW?10:18);i++){
+			  const [a,b] = nebColors[i%nebColors.length];
+			  const s = new THREE.Sprite(new THREE.SpriteMaterial({
+			    map:glowTexture(a,b), transparent:true, opacity:0.5,
+			    depthWrite:false, blending:THREE.AdditiveBlending
+			  }));
+			  const sc = 35 + Math.random()*60;
+			  s.scale.set(sc, sc, 1);
+			  s.position.set((Math.random()-0.5)*160,(Math.random()-0.5)*100,-20 - Math.random()*200);
+			  s.userData.baseOpacity = 0.5;
+			  nebulae.add(s);
+			}
+			scene.add(nebulae);
+			
+			function planetTexture(base, band, glow){
+			  const c = document.createElement('canvas'); c.width=512; c.height=256;
+			  const ctx = c.getContext('2d');
+			  ctx.fillStyle = base; ctx.fillRect(0,0,512,256);
+			  for(let i=0;i<26;i++){
+			    ctx.fillStyle = `rgba(${band},${0.05+Math.random()*0.16})`;
+			    ctx.fillRect(0, Math.random()*256, 512, 4+Math.random()*22);
+			  }
+			  for(let i=0;i<400;i++){
+			    ctx.fillStyle = `rgba(${glow},${Math.random()*0.18})`;
+			    ctx.beginPath();
+			    ctx.arc(Math.random()*512, Math.random()*256, Math.random()*7, 0, 7);
+			    ctx.fill();
+			  }
+			  return new THREE.CanvasTexture(c);
+			}
+			
+			/* hero planet + ring */
+			const planetGroup = new THREE.Group();
+			const planet = new THREE.Mesh(
+			  new THREE.SphereGeometry(7.5, 48, 32),
+			  new THREE.MeshStandardMaterial({
+			    map:planetTexture('#2a0f4f','200,120,255','232,51,255'),
+			    roughness:0.75, metalness:0.25,
+			    emissive:0x3a0f66, emissiveIntensity:0.35
+			  })
+			);
+			planetGroup.add(planet);
+			const ring = new THREE.Mesh(
+			  new THREE.RingGeometry(9.6, 14.4, 96),
+			  new THREE.MeshBasicMaterial({
+			    map:glowTexture('rgba(232,51,255,.8)','rgba(123,108,255,0)'),
+			    color:0xc77dff, side:THREE.DoubleSide, transparent:true, opacity:0.5,
+			    depthWrite:false, blending:THREE.AdditiveBlending
+			  })
+			);
+			ring.rotation.x = Math.PI/2.25;
+			planetGroup.add(ring);
+			const atmo = new THREE.Mesh(
+			  new THREE.SphereGeometry(7.95, 32, 24),
+			  new THREE.MeshBasicMaterial({color:0xa020f0, transparent:true, opacity:0.14, side:THREE.BackSide, blending:THREE.AdditiveBlending})
+			);
+			planetGroup.add(atmo);
+			planetGroup.position.set(13, -3, -8);
+			scene.add(planetGroup);
+			
+			/* moon */
+			const moon = new THREE.Mesh(
+			  new THREE.SphereGeometry(1.6, 24, 16),
+			  new THREE.MeshStandardMaterial({
+			    map:planetTexture('#494258','220,210,240','255,255,255'),
+			    roughness:0.95, metalness:0.05
+			  })
+			);
+			scene.add(moon);
+			
+			/* second planet */
+			const planet2 = new THREE.Mesh(
+			  new THREE.SphereGeometry(5, 40, 28),
+			  new THREE.MeshStandardMaterial({
+			    map:planetTexture('#0e1f4a','120,160,255','123,108,255'),
+			    roughness:0.7, metalness:0.3, emissive:0x102050, emissiveIntensity:0.4
+			  })
+			);
+			planet2.position.set(-16, 4, -64);
+			scene.add(planet2);
+			const atmo2 = new THREE.Mesh(
+			  new THREE.SphereGeometry(5.3, 24, 18),
+			  new THREE.MeshBasicMaterial({color:0x7b6cff, transparent:true, opacity:0.13, side:THREE.BackSide, blending:THREE.AdditiveBlending})
+			);
+			atmo2.position.copy(planet2.position);
+			scene.add(atmo2);
+			
+			/* third small planet */
+			const planet3 = new THREE.Mesh(
+			  new THREE.SphereGeometry(3, 32, 22),
+			  new THREE.MeshStandardMaterial({
+			    map:planetTexture('#3d1140','255,140,230','232,51,255'),
+			    roughness:0.8, metalness:0.2, emissive:0x2a0a30, emissiveIntensity:0.5
+			  })
+			);
+			planet3.position.set(14, 6, -126);
+			scene.add(planet3);
+			
+			/* asteroid belt — ONE instanced mesh = 1 draw call for the entire field */
+			const beltCount = LOW ? 80 : 140;
+			const rockGeo = new THREE.DodecahedronGeometry(1, 0);
+			const rockMat = new THREE.MeshStandardMaterial({color:0x4a3a66, roughness:0.9, metalness:0.2, emissive:0x1a0f30, emissiveIntensity:0.5});
+			const belt = new THREE.InstancedMesh(rockGeo, rockMat, beltCount);
+			{
+			  const d = new THREE.Object3D();
+			  for(let i=0;i<beltCount;i++){
+			    const angle = Math.random()*Math.PI*2;
+			    const radius = 13 + Math.random()*18;
+			    d.position.set(
+			      Math.cos(angle)*radius,
+			      (Math.random()-0.5)*10,
+			      (Math.random()-0.5)*36 + Math.sin(angle)*6
+			    );
+			    d.scale.setScalar(0.12 + Math.random()*0.65);
+			    d.rotation.set(Math.random()*7, Math.random()*7, Math.random()*7);
+			    d.updateMatrix();
+			    belt.setMatrixAt(i, d.matrix);
+			  }
+			  belt.instanceMatrix.needsUpdate = true;
+			}
+			belt.position.set(0, 0, -112);
+			scene.add(belt);
+			
+			/* galaxy */
+			const galaxyGeo = new THREE.BufferGeometry();
+			const gCount = LOW ? 3200 : 5600;
+			const gPos = new Float32Array(gCount*3);
+			const gCol = new Float32Array(gCount*3);
+			const cIn = new THREE.Color(0xff9af5), cOut = new THREE.Color(0x5a3bd6);
+			for(let i=0;i<gCount;i++){
+			  const arm = i % 4;
+			  const radius = Math.pow(Math.random(), 0.6) * 27;
+			  const spin = radius * 0.32;
+			  const armAngle = (arm/4)*Math.PI*2;
+			  const rand = (Math.random()-0.5)*(1.6 - radius*0.04);
+			  gPos[i*3]   = Math.cos(armAngle + spin)*radius + rand;
+			  gPos[i*3+2] = Math.sin(armAngle + spin)*radius + rand;
+			  gPos[i*3+1] = (Math.random()-0.5)*(2.4 - radius*0.05);
+			  const c = cIn.clone().lerp(cOut, radius/27);
+			  gCol[i*3]=c.r; gCol[i*3+1]=c.g; gCol[i*3+2]=c.b;
+			}
+			galaxyGeo.setAttribute('position', new THREE.BufferAttribute(gPos,3));
+			galaxyGeo.setAttribute('color', new THREE.BufferAttribute(gCol,3));
+			const galaxy = new THREE.Points(galaxyGeo, new THREE.PointsMaterial({
+			  size:0.34, vertexColors:true, transparent:true, opacity:0.95,
+			  map:glowTexture('rgba(255,255,255,1)','rgba(255,255,255,0)'),
+			  depthWrite:false, blending:THREE.AdditiveBlending
+			}));
+			galaxy.rotation.x = 0.55;
+			galaxy.position.set(0, -2, -250);
+			scene.add(galaxy);
+			const galaxyCore = new THREE.Sprite(new THREE.SpriteMaterial({
+			  map:glowTexture('rgba(255,230,255,1)','rgba(180,80,255,0)'),
+			  transparent:true, depthWrite:false, blending:THREE.AdditiveBlending
+			}));
+			galaxyCore.scale.set(14,14,1);
+			galaxyCore.position.copy(galaxy.position);
+			scene.add(galaxyCore);
+			
+			/* sister galaxies */
+			const gal2 = galaxy.clone();
+			gal2.material = galaxy.material.clone();
+			gal2.scale.setScalar(0.4);
+			gal2.position.set(32, 14, -214);
+			gal2.rotation.x = 1.0;
+			scene.add(gal2);
+			const gal3 = galaxy.clone();
+			gal3.material = galaxy.material.clone();
+			gal3.scale.setScalar(0.28);
+			gal3.position.set(-36, -10, -228);
+			scene.add(gal3);
+			
+			/* ============================================================
+			   CAMERA FLIGHT
+			============================================================ */
+			const path = [
+			  {p:[0,   0,   26 ], l:[0,  0,  -10 ]},   // hero
+			  {p:[ -4,  1,   14 ], l:[7, -2,  -10 ]},  // beat: spark
+			  {p:[ -6,  2,   6  ], l:[8, -2,  -12 ]},  // quote 1
+			  {p:[ 4,  -1,  -20 ], l:[-4, 1,  -50 ]},  // about
+			  {p:[ -6,  3,  -44 ], l:[-16, 4, -64 ]},  // vision
+			  {p:[ -1,  2,  -66 ], l:[4,  0, -100 ]},  // beat: noise
+			  {p:[ 1,   0,  -88 ], l:[0,  0, -118 ]},  // quote 2 — belt
+			  {p:[ 2,   0,  -104], l:[0,  2, -134 ]},  // services
+			  {p:[ 0,   2,  -126], l:[10, 6, -150 ]},  // strengths
+			  {p:[ -3,  2,  -150], l:[2,  0, -190 ]},  // approach
+			  {p:[ 4,   0,  -176], l:[-6, 2, -216 ]},  // edge
+			  {p:[ 0,   3,  -198], l:[16, 10,-218 ]},  // clients
+			  {p:[ 0,   4,  -218], l:[0,  0, -250 ]},  // quote 3 — galaxy ahead
+			  {p:[ 0,   6,  -262], l:[0,  2, -330 ]},  // past the galaxy…
+			  {p:[ 0,   2,  -288], l:[0,  0, -360 ]},  // finale — empty dark, tiny stars only
+			];
+			function lerp(a,b,t){ return a+(b-a)*t }
+			function sampleCurve(t){
+			  const seg = Math.min(path.length-2, Math.floor(t*(path.length-1)));
+			  const f = t*(path.length-1) - seg;
+			  const e = f*f*(3-2*f);
+			  const A = path[seg], B = path[seg+1];
+			  return {
+			    px:lerp(A.p[0],B.p[0],e), py:lerp(A.p[1],B.p[1],e), pz:lerp(A.p[2],B.p[2],e),
+			    lx:lerp(A.l[0],B.l[0],e), ly:lerp(A.l[1],B.l[1],e), lz:lerp(A.l[2],B.l[2],e)
+			  };
+			}
+			
+			let scrollT = 0, smooth = 0, mouseX = 0, mouseY = 0;
+			addEventListener('mousemove', e=>{
+			  mouseX = (e.clientX/innerWidth - 0.5);
+			  mouseY = (e.clientY/innerHeight - 0.5);
+			});
+			
+			/* ============================================================
+			   DISTANCE HUD
+			============================================================ */
+			const hudNum  = document.getElementById('hud-num');
+			const hudUnit = document.getElementById('hud-unit');
+			const hudZone = document.getElementById('hud-zone');
+			const hudBar  = document.getElementById('hud-bar');
+			const KM_PER_AU = 1.496e8;
+			const KM_PER_LY = 9.461e12;
+			const MAX_KM = 4.4e23;
+			function formatDistance(km){
+			  if(km < 1e6)            return [km.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,','), 'KM'];
+			  if(km < KM_PER_AU)      return [(km/1e6).toFixed(2), 'M KM'];
+			  if(km < KM_PER_LY*0.05) return [(km/KM_PER_AU).toFixed(2), 'AU'];
+			  const ly = km/KM_PER_LY;
+			  if(ly < 1)              return [(ly*365.25).toFixed(2), 'LIGHT DAYS'];
+			  if(ly < 1e3)            return [ly.toFixed(2), 'LIGHT YEARS'];
+			  if(ly < 1e6)            return [(ly/1e3).toFixed(2), 'K LY'];
+			  if(ly < 1e9)            return [(ly/1e6).toFixed(2), 'M LY'];
+			  return [(ly/1e9).toFixed(2), 'B LY'];
+			}
+			const zones = [
+			  [0.00, 'LAUNCH PAD'],
+			  [0.06, 'LOW ORBIT'],
+			  [0.15, 'INNER SYSTEM'],
+			  [0.28, 'OUTER ORBITS'],
+			  [0.42, 'ASTEROID BELT'],
+			  [0.55, 'DEEP SYSTEM'],
+			  [0.66, 'INTERSTELLAR SPACE'],
+			  [0.78, 'GALACTIC RIM'],
+			  [0.88, 'INTERGALACTIC VOID'],
+			  [0.955,'THE OBSERVABLE UNIVERSE']
+			];
+			function zoneAt(t){
+			  let z = zones[0][1];
+			  for(const [thr,name] of zones){ if(t >= thr) z = name; }
+			  return z;
+			}
+			let shownKm = 0, lastNum = '', lastUnit = '', lastZone = '';
+			function updateHUD(t){
+			  const targetKm = t <= 0 ? 0 : Math.pow(10, t * Math.log10(MAX_KM));
+			  shownKm += (targetKm - shownKm) * 0.08;
+			  const [num, unit] = formatDistance(shownKm);
+			  const zone = zoneAt(t);
+			  /* write to the DOM only when something actually changed — zero work at rest */
+			  if(num  !== lastNum ){ hudNum.textContent  = num;  lastNum  = num;  }
+			  if(unit !== lastUnit){ hudUnit.textContent = unit; lastUnit = unit; }
+			  if(zone !== lastZone){ hudZone.textContent = zone; lastZone = zone; }
+			  hudBar.style.transform = 'scaleX(' + t + ')';
+			}
+			
+			/* fade everything except tiny stars near the end */
+			function smoothstep(x){ x = Math.max(0, Math.min(1, x)); return x*x*(3-2*x); }
+			const endBg = new THREE.Color(0x020107);
+			const baseBg = new THREE.Color(0x07030f);
+			
+			const clock = new THREE.Clock();
+			function animate(){
+			  requestAnimationFrame(animate);
+			  if(document.hidden) return;            // don't burn GPU in background tabs
+			  const t = clock.getElapsedTime();
+			  smooth += (scrollT - smooth) * 0.085;   // tighter: Lenis already smooths the input
+			  const s = Math.max(0, Math.min(1, smooth));
+			
+			  const c = sampleCurve(s);
+			  camera.position.set(c.px + mouseX*1.6, c.py - mouseY*1.2, c.pz);
+			  camera.lookAt(c.lx, c.ly, c.lz);
+			
+			  updateHUD(s);
+			
+			  /* ----- ZONE CULLING: only render the chapter we're flying through ----- */
+			  planetGroup.visible = s < 0.42;
+			  moon.visible        = planetGroup.visible;
+			  planet2.visible = atmo2.visible = (s > 0.06 && s < 0.62);
+			  planet3.visible = (s > 0.30 && s < 0.80);
+			  belt.visible    = (s > 0.22 && s < 0.80);
+			  galaxy.visible  = galaxyCore.visible = (s > 0.52);
+			  gal2.visible    = gal3.visible      = (s > 0.48);
+			  deepStars.visible = (s > 0.58);
+			  nebulae.visible  = (s < 0.97);   // gone in the pure-black finale
+			
+			  /* ----- THE DARKENING: observable-universe ending ----- */
+			  const fade = smoothstep((s - 0.84) / 0.12);   // 0 → 1 across the last stretch
+			  const keep = 1 - fade;
+			  galaxy.material.opacity     = 0.95 * keep;
+			  galaxyCore.material.opacity = keep;
+			  gal2.material.opacity       = 0.95 * keep;
+			  gal3.material.opacity       = 0.95 * keep;
+			  nebulae.children.forEach(n => n.material.opacity = n.userData.baseOpacity * keep);
+			  starsNear.material.opacity  = 0.9 * keep;          // magenta stars fade out
+			  starsMid.material.opacity   = 0.9 * keep;          // blue-violet stars fully gone at the end
+			  galLight.intensity          = 1.3 * keep;
+			  keyLight.intensity          = 1.6 * keep;
+			  deepStars.material.opacity  = 0.45 + 0.4*fade;     // tiny stars become the scene
+			  scene.background.copy(baseBg).lerp(endBg, fade);   // near-pure black
+			  scene.fog.color.copy(scene.background);
+			
+			  planet.rotation.y = t*0.05;
+			  ring.rotation.z = t*0.02;
+			  planet2.rotation.y = -t*0.04;
+			  planet3.rotation.y = t*0.06;
+			  moon.position.set(
+			    planetGroup.position.x + Math.cos(t*0.25)*12.5,
+			    planetGroup.position.y + Math.sin(t*0.5)*1.6,
+			    planetGroup.position.z + Math.sin(t*0.25)*12.5
+			  );
+			  moon.rotation.y = t*0.2;
+			  belt.rotation.y = t*0.02;   // entire field drifts in orbit — 1 matrix update, not 140
+			  galaxy.rotation.y = t*0.04;
+			  gal2.rotation.y = -t*0.05;
+			  gal3.rotation.y = t*0.06;
+			  starsNear.rotation.y = t*0.004;
+			  starsMid.rotation.y = -t*0.002;
+			
+			  renderer.render(scene, camera);
+			}
+			animate();
+			
+			function onScroll(){
+			  const max = document.documentElement.scrollHeight - innerHeight;
+			  scrollT = max > 0 ? scrollY / max : 0;
+			  document.getElementById('progress').style.transform = 'scaleX(' + scrollT + ')';
+			}
+			addEventListener('scroll', onScroll, {passive:true});
+			onScroll();
+			/* if the page loads mid-scroll (reload), start the camera and counter
+			   at the current position instead of flying in from the launch pad */
+			smooth = scrollT;
+			shownKm = scrollT <= 0 ? 0 : Math.pow(10, scrollT * Math.log10(MAX_KM));
+			
+			/* ============================================================
+			   LENIS SMOOTH SCROLL — buttery inertia on the page itself
+			============================================================ */
+			let lenis = null;
+			if(!reduceMotion && window.Lenis){
+			  lenis = new Lenis({
+			    lerp: 0.1,            // responsive glide — heavy enough to feel cinematic, light enough to feel instant
+			    smoothWheel: true,
+			    wheelMultiplier: 1
+			  });
+			  lenis.on('scroll', ()=>{ onScroll(); ScrollTrigger.update(); });
+			  gsap.ticker.add((time)=>{ lenis.raf(time * 1000); });
+			  gsap.ticker.lagSmoothing(0);
+			}
+			/* smooth anchor links through Lenis */
+			document.querySelectorAll('a[href^="#"]').forEach(a=>{
+			  a.addEventListener('click', e=>{
+			    const target = document.querySelector(a.getAttribute('href'));
+			    if(!target) return;
+			    e.preventDefault();
+			    if(lenis) lenis.scrollTo(target, {duration: 2.2});
+			    else target.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth'});
+			  });
+			});
+			
+			let resizeTimer = null;
+			addEventListener('resize', ()=>{
+			  clearTimeout(resizeTimer);
+			  resizeTimer = setTimeout(()=>{
+			    camera.aspect = innerWidth/innerHeight;
+			    camera.updateProjectionMatrix();
+			    renderer.setSize(innerWidth, innerHeight);
+			  }, 120);
+			});
+			
+			/* ============================================================
+			   DOM CHOREOGRAPHY
+			============================================================ */
+			if(!reduceMotion){
+			  document.querySelectorAll('.rv').forEach((el)=>{
+			    gsap.to(el, {
+			      opacity:1, y:0, duration:0.85, ease:'power3.out',
+			      scrollTrigger:{trigger:el, start:'top 90%'}
+			    });
+			  });
+			  gsap.fromTo('#hero h1',{opacity:0, scale:0.92, filter:'blur(14px)'},
+			    {opacity:1, scale:1, filter:'blur(0px)', duration:1.6, ease:'power3.out', delay:0.2});
+			  gsap.fromTo('#hero .sub',{opacity:0, letterSpacing:'1.2em'},
+			    {opacity:1, letterSpacing:'.58em', duration:1.8, ease:'power3.out', delay:0.6});
+			  gsap.fromTo('#hud',{opacity:0, y:30},{opacity:1, y:0, duration:1.2, ease:'power3.out', delay:1.2});
+			} else {
+			  document.querySelectorAll('.rv').forEach(el=>{el.style.opacity=1; el.style.transform='none'});
+			}
+			
+			/* dismiss loader once everything is ready */
+			function hideLoader(){
+			  const l = document.getElementById('loader');
+			  if(l && !l.classList.contains('done')) l.classList.add('done');
+			}
+			if(document.readyState === 'complete') hideLoader();
+			else addEventListener('load', hideLoader);
+			setTimeout(hideLoader, 2800); // never trap the user behind the loader
+		</script>
+		<script>
+			/* ============================================================
+			   FAILSAFE — even if a CDN library fails to load and the main
+			   script crashes, the user must still see all content.
+			============================================================ */
+			setTimeout(function(){
+			  var l = document.getElementById('loader');
+			  if(l) l.classList.add('done');
+			  document.querySelectorAll('.rv').forEach(function(el){
+			    if(getComputedStyle(el).opacity === '0'){
+			      el.style.opacity = 1;
+			      el.style.transform = 'none';
+			    }
+			  });
+			}, 3500);
+		</script>
+	</body>
 </html>
